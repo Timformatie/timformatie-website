@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Timformatie — Van data naar actie.</title>
+<meta name="description" content="Timformatie bouwt open, soevereine dataplatformen, datastrategie en interactieve data- en AI-toepassingen voor de zorg, het onderwijs en daarbuiten.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Source+Sans+3:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{font-family:'Source Sans 3',-apple-system,'Segoe UI',Arial,sans-serif;color:#0F2A3D;background:#F5F1E8;-webkit-font-smoothing:antialiased;}
+  a{color:inherit}
+  ::selection{background:#5EE3B1;color:#0F2A3D}
+  @keyframes gather{0%{transform:translate(var(--dx),var(--dy)) scale(.35);opacity:0}14%{opacity:.9}100%{transform:translate(0,0) scale(1);opacity:1}}
+  @keyframes breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.012)}}
+  @keyframes linein{from{opacity:0}to{opacity:.5}}
+  @keyframes nodein{from{opacity:0}to{opacity:1}}
+  @keyframes nodepulse{0%,100%{transform:scale(1)}50%{transform:scale(1.28)}}
+  @keyframes drawpath{to{stroke-dashoffset:0}}
+  @keyframes marq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  [data-track]{display:flex;width:max-content;animation:marq 50s linear infinite;}
+  .gform{animation:breathe 9s ease-in-out 7s infinite;}
+  @media(max-width:900px){
+    [data-cols]{grid-template-columns:1fr !important}
+    [data-nav]{display:none !important}
+    [data-sec]{padding-left:22px !important;padding-right:22px !important}
+    [data-hero]{grid-template-columns:1fr !important}
+    [data-herofig]{display:none !important}
+    [data-h1]{font-size:clamp(52px,13vw,72px) !important}
+    [data-founder]{grid-template-columns:1fr !important}
+  }
+  @media(prefers-reduced-motion:reduce){
+    [data-track]{animation:none !important}
+    .gsq,.gform,.gline,.gnode{animation:none !important;transform:none !important;opacity:1 !important}
+  }
+</style>
+</helmet>
+<div style="background:#F5F1E8;overflow-x:hidden;">
+
+<header style="position:sticky;top:0;z-index:60;background:rgba(245,241,232,0.82);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid rgba(15,42,61,0.08);">
+  <div style="max-width:1280px;margin:0 auto;padding:15px 40px;display:flex;align-items:center;justify-content:space-between;gap:32px;">
+    <a href="/" style="display:flex;align-items:center;gap:11px;text-decoration:none;">
+      <img src="assets/logo/logo-sage.png" alt="Timformatie logo" width="30" height="32" style="display:block;width:30px;height:auto;">
+      <span style="font-family:'Archivo',sans-serif;font-weight:800;font-size:22px;letter-spacing:-0.02em;color:#0F2A3D;">timformatie<span style="color:#5F8368;">.</span></span>
+    </a>
+    <nav data-nav style="display:flex;align-items:center;gap:30px;">
+      <a href="/" style="font-size:15px;font-weight:600;color:#0F2A3D;text-decoration:none;">Home</a>
+      <a href="Expertise.dc.html" style="font-size:15px;font-weight:600;color:rgba(15,42,61,0.6);text-decoration:none;" style-hover="color:#0F2A3D;">Expertise</a>
+      <a href="Projecten.dc.html" style="font-size:15px;font-weight:600;color:rgba(15,42,61,0.6);text-decoration:none;" style-hover="color:#0F2A3D;">Projecten</a>
+      <a href="OverOns.dc.html" style="font-size:15px;font-weight:600;color:rgba(15,42,61,0.6);text-decoration:none;" style-hover="color:#0F2A3D;">Over ons</a>
+      <a href="Contact.dc.html" style="font-size:15px;font-weight:600;color:rgba(15,42,61,0.6);text-decoration:none;" style-hover="color:#0F2A3D;">Contact</a>
+    </nav>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <div style="display:flex;align-items:center;border:1px solid rgba(15,42,61,0.18);border-radius:999px;overflow:hidden;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;letter-spacing:0.04em;">
+        <span style="padding:6px 11px;background:#0F2A3D;color:#F5F1E8;">NL</span>
+        <a href="#" style="padding:6px 11px;color:rgba(15,42,61,0.6);text-decoration:none;" style-hover="color:#0F2A3D;">EN</a>
+      </div>
+      <a href="Contact.dc.html" data-nav style="display:inline-flex;align-items:center;gap:8px;background:#C8A04A;color:#0F2A3D;font-weight:700;font-size:15px;padding:11px 20px;border-radius:999px;text-decoration:none;" style-hover="background:#b88f3a;">Kennismaken? &#8594;</a>
+    </div>
+  </div>
+</header>
+
+<div style="background:#0F2A3D;overflow:hidden;border-bottom:1px solid rgba(245,241,232,0.1);">
+  <div data-track style="display:flex;width:max-content;align-items:center;animation:marq 42s linear infinite;padding:11px 0;font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:0.07em;font-weight:600;color:rgba(245,241,232,0.82);">
+    <span style="display:inline-flex;align-items:center;gap:26px;padding-right:26px;"><span>Open source dataplatformen</span><span style="width:7px;height:7px;border-radius:2px;background:#5EE3B1;"></span><span>Soevereiniteit by design</span><span style="width:7px;height:7px;border-radius:2px;background:#5EE3B1;"></span><span>Zorg &amp; onderwijs</span><span style="width:7px;height:7px;border-radius:2px;background:#5EE3B1;"></span><span>Geen lock-in</span><span style="width:7px;height:7px;border-radius:2px;background:#5EE3B1;"></span><span>FHIR &amp; OMOP</span><span style="width:7px;height:7px;border-radius:2px;background:#5EE3B1;"></span><span>Van data naar actie</span><span style="width:7px;height:7px;border-radius:2px;background:#5EE3B1;"></span></span>
+    <span style="display:inline-flex;align-items:center;gap:26px;padding-right:26px;" aria-hidden="true"><span>Open source dataplatformen</span><span style="width:7px;height:7px;border-radius:2px;background:#5EE3B1;"></span><span>Soevereiniteit by design</span><span style="width:7px;height:7px;border-radius:2px;background:#5EE3B1;"></span><span>Zorg &amp; onderwijs</span><span style="width:7px;height:7px;border-radius:2px;background:#5EE3B1;"></span><span>Geen lock-in</span><span style="width:7px;height:7px;border-radius:2px;background:#5EE3B1;"></span><span>FHIR &amp; OMOP</span><span style="width:7px;height:7px;border-radius:2px;background:#5EE3B1;"></span><span>Van data naar actie</span><span style="width:7px;height:7px;border-radius:2px;background:#5EE3B1;"></span></span>
+  </div>
+</div>
+
+<section id="heroSection" data-screen-label="Hero" data-sec style="position:relative;padding:64px 40px 84px;overflow:hidden;">
+  <img src="assets/logo/ghost-sage-soft.png" alt="" aria-hidden="true" style="position:absolute;left:-12%;bottom:-30%;width:46%;max-width:680px;opacity:0.55;pointer-events:none;z-index:0;">
+  <div data-hero style="position:relative;z-index:1;max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1.15fr 0.85fr;gap:40px;align-items:center;min-height:78vh;">
+    <div>
+      <a href="https://srdphub.com/" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:10px;background:#FBF9F2;border:1px solid #C9D8CC;border-radius:999px;padding:7px 8px 7px 8px;text-decoration:none;margin-bottom:30px;box-shadow:0 1px 2px rgba(15,42,61,0.05);">
+        <span style="display:inline-flex;align-items:center;gap:7px;background:#5EE3B1;color:#0F2A3D;border-radius:999px;padding:4px 11px;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;letter-spacing:0.08em;">NIEUW</span>
+        <span style="font-size:14.5px;font-weight:600;color:#0F2A3D;padding-right:4px;">Maak kennis met SRDP, ons open source dataplatform &#8594;</span>
+      </a>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:15px;letter-spacing:0.16em;text-transform:uppercase;color:#5F8368;font-weight:700;margin-bottom:22px;display:flex;align-items:center;gap:10px;"><span style="width:9px;height:9px;border-radius:2px;background:#5EE3B1;display:inline-block;box-shadow:0 0 0 4px rgba(94,227,177,0.25);"></span>Open source dataplatformen</div>
+      <h1 data-h1 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(56px,7.4vw,118px);line-height:0.95;letter-spacing:-0.015em;color:#0F2A3D;margin:0 0 28px;">Van data naar <span data-mark style="background:#5EE3B1;color:#0F2A3D;padding:0.02em 0.16em;box-decoration-break:clone;-webkit-box-decoration-break:clone;">actie</span><span style="color:#C8A04A;">.</span></h1>
+      <p style="font-size:clamp(18px,1.55vw,22px);line-height:1.55;color:rgba(15,42,61,0.72);max-width:520px;margin:0 0 36px;">Open, soevereine dataplatformen voor organisaties die écht in control willen zijn over hun data, in de zorg, het onderwijs en daarbuiten.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:13px;align-items:center;">
+        <a href="Contact.dc.html" style="display:inline-flex;align-items:center;gap:9px;background:#C8A04A;color:#0F2A3D;font-weight:700;font-size:16px;padding:15px 28px;border-radius:999px;text-decoration:none;box-shadow:0 14px 30px rgba(200,160,74,0.3);" style-hover="background:#b88f3a;">Neem contact op <span>&#8594;</span></a>
+        <a href="Contact.dc.html" style="display:inline-flex;align-items:center;gap:9px;background:transparent;color:#0F2A3D;font-weight:600;font-size:16px;padding:15px 26px;border-radius:999px;border:1px solid rgba(15,42,61,0.25);text-decoration:none;" style-hover="background:rgba(15,42,61,0.04);border-color:#0F2A3D;">Plan een afspraak</a>
+      </div>
+    </div>
+    <div data-herofig style="position:relative;display:flex;align-items:center;justify-content:center;">
+      <div id="heroGraphic" style="position:relative;will-change:transform;"></div>
+    </div>
+  </div>
+</section>
+
+<section data-sec style="padding:0 40px;">
+  <div style="display:flex;align-items:center;gap:14px;max-width:1280px;margin:0 auto;">
+    <span style="width:9px;height:9px;border-radius:2px;background:#5F8368;flex:none;"></span>
+    <span style="flex:1;height:1px;background:linear-gradient(90deg,rgba(95,131,104,0.4),rgba(15,42,61,0.08));"></span>
+    <span style="width:9px;height:9px;border-radius:2px;background:#5EE3B1;flex:none;"></span>
+    <span style="flex:1;height:1px;background:linear-gradient(90deg,rgba(15,42,61,0.08),rgba(95,131,104,0.4));"></span>
+    <span style="width:9px;height:9px;border-radius:2px;background:#5F8368;flex:none;"></span>
+  </div>
+</section>
+
+<section data-screen-label="Statement" data-sec style="padding:96px 40px;">
+  <div data-reveal style="max-width:1080px;margin:0 auto;">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:15px;letter-spacing:0.16em;text-transform:uppercase;color:#5F8368;font-weight:700;margin-bottom:30px;">Waar wij voor staan</div>
+    <p style="font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(34px,5vw,72px);line-height:1.08;letter-spacing:-0.02em;color:#0F2A3D;margin:0;">Jouw data hoort van <span data-mark style="background:#5EE3B1;color:#0F2A3D;padding:0.02em 0.14em;box-decoration-break:clone;-webkit-box-decoration-break:clone;">jou</span> te zijn. Open, soeverein, zonder lock-in.</p>
+  </div>
+</section>
+
+<section data-screen-label="Drie focuspunten" data-sec style="padding:36px 40px 104px;">
+  <div style="max-width:1280px;margin:0 auto;">
+    <div data-reveal style="max-width:760px;margin-bottom:52px;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:15px;letter-spacing:0.16em;text-transform:uppercase;color:#5F8368;font-weight:700;margin-bottom:18px;">Wat we doen</div>
+      <h2 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(34px,4vw,60px);line-height:1.02;letter-spacing:-0.02em;color:#0F2A3D;margin:0;">Drie manieren naar <span data-mark style="background:#5EE3B1;color:#0F2A3D;padding:0.02em 0.14em;box-decoration-break:clone;-webkit-box-decoration-break:clone;">actie</span>.</h2>
+    </div>
+    <div data-cols data-reveal style="position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:22px;">
+      <a href="Expertise.dc.html" style="position:relative;z-index:1;display:flex;flex-direction:column;background:#FBF9F2;border:1px solid rgba(15,42,61,0.08);border-radius:20px;padding:38px 34px 34px;text-decoration:none;transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;" style-hover="transform:translateY(-8px);box-shadow:0 30px 56px rgba(15,42,61,0.14);border-color:rgba(95,131,104,0.4);">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:34px;">
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:14px;letter-spacing:0.1em;color:#5F8368;">01</span>
+          <span style="width:9px;height:9px;border-radius:2px;background:#5F8368;display:inline-block;"></span>
+        </div>
+        <h3 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(30px,2.7vw,40px);line-height:1.0;letter-spacing:-0.025em;color:#5F8368;margin:0 0 14px;">Dataplatform</h3>
+        <p style="font-size:16px;line-height:1.5;color:rgba(15,42,61,0.62);margin:0 0 26px;">Open en soeverein. Jouw fundament voor alle data.</p>
+        <span style="margin-top:auto;font-family:'JetBrains Mono',monospace;font-weight:700;font-size:14px;letter-spacing:0.02em;color:#0F2A3D;display:inline-flex;align-items:center;gap:8px;">Bekijk het platform <span style="color:#5F8368;font-size:17px;">&#8594;</span></span>
+      </a>
+      <a href="Expertise.dc.html" style="position:relative;z-index:1;display:flex;flex-direction:column;background:#FBF9F2;border:1px solid rgba(15,42,61,0.08);border-radius:20px;padding:38px 34px 34px;text-decoration:none;transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;" style-hover="transform:translateY(-8px);box-shadow:0 30px 56px rgba(15,42,61,0.14);border-color:rgba(95,131,104,0.4);">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:34px;">
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:14px;letter-spacing:0.1em;color:#9A7A2F;">02</span>
+          <span style="width:9px;height:9px;border-radius:2px;background:#9A7A2F;display:inline-block;"></span>
+        </div>
+        <h3 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(30px,2.7vw,40px);line-height:1.0;letter-spacing:-0.025em;color:#C8A04A;margin:0 0 14px;">Datastrategie</h3>
+        <p style="font-size:16px;line-height:1.5;color:rgba(15,42,61,0.62);margin:0 0 26px;">Van databerg naar heldere, onderbouwde keuzes.</p>
+        <span style="margin-top:auto;font-family:'JetBrains Mono',monospace;font-weight:700;font-size:14px;letter-spacing:0.02em;color:#0F2A3D;display:inline-flex;align-items:center;gap:8px;">Bekijk datastrategie <span style="color:#9A7A2F;font-size:17px;">&#8594;</span></span>
+      </a>
+      <a href="Expertise.dc.html" style="position:relative;z-index:1;display:flex;flex-direction:column;background:#FBF9F2;border:1px solid rgba(15,42,61,0.08);border-radius:20px;padding:38px 34px 34px;text-decoration:none;transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;" style-hover="transform:translateY(-8px);box-shadow:0 30px 56px rgba(15,42,61,0.14);border-color:rgba(95,131,104,0.4);">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:34px;">
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:14px;letter-spacing:0.1em;color:#3F5D47;">03</span>
+          <span style="width:9px;height:9px;border-radius:2px;background:#3F5D47;display:inline-block;"></span>
+        </div>
+        <h3 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(30px,2.7vw,40px);line-height:1.0;letter-spacing:-0.025em;color:#0F2A3D;margin:0 0 14px;">AI &amp; webapps</h3>
+        <p style="font-size:16px;line-height:1.5;color:rgba(15,42,61,0.62);margin:0 0 26px;">Inzicht dat de werkvloer écht verder helpt.</p>
+        <span style="margin-top:auto;font-family:'JetBrains Mono',monospace;font-weight:700;font-size:14px;letter-spacing:0.02em;color:#0F2A3D;display:inline-flex;align-items:center;gap:8px;">Bekijk AI &amp; webapps <span style="color:#3F5D47;font-size:17px;">&#8594;</span></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="Hoe het werkt" data-sec style="position:relative;padding:104px 40px;background:#0F2A3D;color:#F5F1E8;overflow:hidden;">
+  <img src="assets/logo/ghost-cream.png" data-px="170" alt="" aria-hidden="true" style="position:absolute;right:-6%;top:-18%;width:46%;max-width:600px;opacity:0.08;pointer-events:none;will-change:transform;">
+  <div style="position:relative;z-index:1;max-width:1280px;margin:0 auto;">
+    <div data-reveal data-cols style="display:grid;grid-template-columns:1fr 0.85fr;gap:56px;align-items:end;margin-bottom:60px;">
+      <div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:15px;letter-spacing:0.16em;text-transform:uppercase;color:#5EE3B1;font-weight:700;margin-bottom:20px;">Soevereiniteit, praktisch gemaakt</div>
+        <h2 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(34px,4vw,58px);line-height:1.04;letter-spacing:-0.01em;color:#F5F1E8;margin:0;">Nooit afhankelijk van <span data-mark style="background:#5EE3B1;color:#0F2A3D;padding:0.02em 0.14em;box-decoration-break:clone;-webkit-box-decoration-break:clone;">één</span> leverancier.</h2>
+      </div>
+      <div style="position:relative;">
+        <p style="font-size:17px;line-height:1.6;color:rgba(245,241,232,0.75);margin:0;">Open standaarden en open source op elke laag — software, data én dienstverlening. Verandert je behoefte, dan schuift de juiste expertise aan, zonder migratie en zonder herbouw.</p>
+        <svg width="120" height="60" viewBox="0 0 120 60" fill="none" aria-hidden="true" style="position:absolute;right:0;top:-78px;"><path d="M6 40 C 30 8, 80 6, 104 30 C 110 36, 108 44, 100 46" stroke="#5EE3B1" stroke-width="2" stroke-linecap="round"/><path d="M100 46 l 9 -3 M100 46 l 1 -10" stroke="#5EE3B1" stroke-width="2" stroke-linecap="round"/></svg>
+      </div>
+    </div>
+    <div aria-hidden="true" style="position:relative;overflow:hidden;margin:0 -40px 56px;mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);">
+      <div data-px="-620" style="display:flex;gap:0;white-space:nowrap;will-change:transform;font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(48px,7vw,104px);line-height:1;letter-spacing:-0.02em;color:transparent;-webkit-text-stroke:1.5px rgba(94,227,177,0.55);">
+        <span style="padding-right:0.4em;">Open source.</span><span style="padding-right:0.4em;color:#5EE3B1;-webkit-text-stroke:0;">Soeverein.</span><span style="padding-right:0.4em;">Geen lock-in.</span><span style="padding-right:0.4em;">Open source.</span><span style="padding-right:0.4em;color:#5EE3B1;-webkit-text-stroke:0;">Soeverein.</span><span style="padding-right:0.4em;">Geen lock-in.</span><span style="padding-right:0.4em;">Open source.</span><span style="padding-right:0.4em;color:#5EE3B1;-webkit-text-stroke:0;">Soeverein.</span><span style="padding-right:0.4em;">Geen lock-in.</span>
+      </div>
+    </div>
+    <div data-reveal data-cols style="display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid rgba(245,241,232,0.16);">
+      <div style="padding:30px 30px 30px 0;border-right:1px solid rgba(245,241,232,0.12);">
+        <span style="display:inline-block;font-family:'JetBrains Mono',monospace;font-weight:600;font-size:15px;color:#0F2A3D;background:#5EE3B1;padding:4px 10px;border-radius:5px;margin-bottom:18px;">01</span>
+        <h3 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:22px;color:#F5F1E8;margin:0 0 10px;">Kies je startpunt</h3>
+        <p style="font-size:15.5px;line-height:1.55;color:rgba(245,241,232,0.7);margin:0;">We brengen je databronnen, doelen en context in kaart en kiezen de open bouwstenen die passen.</p>
+      </div>
+      <div style="padding:30px;border-right:1px solid rgba(245,241,232,0.12);">
+        <span style="display:inline-block;font-family:'JetBrains Mono',monospace;font-weight:600;font-size:15px;color:#0F2A3D;background:#5EE3B1;padding:4px 10px;border-radius:5px;margin-bottom:18px;">02</span>
+        <h3 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:22px;color:#F5F1E8;margin:0 0 10px;">Bouw op jouw cloud</h3>
+        <p style="font-size:15.5px;line-height:1.55;color:rgba(245,241,232,0.7);margin:0;">Het platform draait op je eigen cloud, datacenter of een soevereine host — schaalbaar en veilig.</p>
+      </div>
+      <div style="padding:30px 0 30px 30px;">
+        <span style="display:inline-block;font-family:'JetBrains Mono',monospace;font-weight:600;font-size:15px;color:#0F2A3D;background:#5EE3B1;padding:4px 10px;border-radius:5px;margin-bottom:18px;">03</span>
+        <h3 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:22px;color:#F5F1E8;margin:0 0 10px;">Het is van jou</h3>
+        <p style="font-size:15.5px;line-height:1.55;color:rgba(245,241,232,0.7);margin:0;">Code, data en configuratie zijn van jou. Inzicht naar de werkvloer, beheer waar je het wilt.</p>
+      </div>
+    </div>
+    <div data-reveal style="margin-top:44px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
+      <span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(245,241,232,0.45);font-weight:600;margin-right:8px;">Onze stack</span>
+      <span style="background:rgba(245,241,232,0.07);border:1px solid rgba(245,241,232,0.16);border-radius:999px;padding:7px 15px;font-weight:600;font-size:14px;">Python</span>
+      <span style="background:rgba(245,241,232,0.07);border:1px solid rgba(245,241,232,0.16);border-radius:999px;padding:7px 15px;font-weight:600;font-size:14px;">dbt</span>
+      <span style="background:rgba(245,241,232,0.07);border:1px solid rgba(245,241,232,0.16);border-radius:999px;padding:7px 15px;font-weight:600;font-size:14px;">Kubernetes</span>
+      <span style="background:rgba(245,241,232,0.07);border:1px solid rgba(245,241,232,0.16);border-radius:999px;padding:7px 15px;font-weight:600;font-size:14px;">Scaleway</span>
+      <span style="background:rgba(245,241,232,0.07);border:1px solid rgba(245,241,232,0.16);border-radius:999px;padding:7px 15px;font-weight:600;font-size:14px;">React</span>
+      <span style="background:rgba(94,227,177,0.14);border:1px solid rgba(94,227,177,0.4);border-radius:999px;padding:7px 15px;font-weight:600;font-size:14px;color:#5EE3B1;">FHIR</span>
+      <span style="background:rgba(94,227,177,0.14);border:1px solid rgba(94,227,177,0.4);border-radius:999px;padding:7px 15px;font-weight:600;font-size:14px;color:#5EE3B1;">OMOP</span>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="Klanten marquee" style="padding:50px 0;background:#FBF9F2;border-bottom:1px solid rgba(15,42,61,0.06);overflow:hidden;">
+  <div data-sec style="max-width:1280px;margin:0 auto 24px;padding:0 40px;">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:rgba(15,42,61,0.5);font-weight:600;">Organisaties waarmee we werken</div>
+  </div>
+  <div style="position:relative;">
+    <div id="marqueeTrack" data-track></div>
+  </div>
+</section>
+
+<section data-screen-label="Klantquotes" data-sec style="padding:104px 40px;">
+  <div style="max-width:1280px;margin:0 auto;">
+    <figure data-reveal style="position:relative;overflow:hidden;margin:0;background:#0F2A3D;border-radius:28px;padding:clamp(48px,6vw,88px);">
+      <img src="assets/logo/ghost-cream.png" alt="" aria-hidden="true" style="position:absolute;right:-4%;bottom:-22%;width:34%;max-width:420px;opacity:0.07;pointer-events:none;">
+      <div style="position:relative;max-width:880px;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:15px;letter-spacing:0.16em;text-transform:uppercase;color:#5EE3B1;font-weight:700;margin-bottom:30px;">Wat klanten zeggen</div>
+        <blockquote style="margin:0;font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(30px,3.6vw,52px);line-height:1.12;letter-spacing:-0.02em;color:#F5F1E8;">&ldquo;Een dashboard dat duizenden studenten <span data-mark style="background:#5EE3B1;color:#0F2A3D;padding:0.02em 0.12em;box-decoration-break:clone;-webkit-box-decoration-break:clone;">echt inzicht</span> geeft in hun leefstijl — en ons in de cijfers erachter.&rdquo;</blockquote>
+        <figcaption style="display:flex;align-items:center;gap:13px;margin-top:38px;">
+          <span style="display:inline-block;width:6px;height:26px;border-radius:2px;background:#5EE3B1;"></span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:14px;letter-spacing:0.04em;color:rgba(245,241,232,0.7);">TestJeLeefstijl &middot; leefstijlonderzoek onder studenten</span>
+        </figcaption>
+        <a href="Projecten.dc.html" style="display:inline-flex;align-items:center;gap:10px;margin-top:34px;font-family:'JetBrains Mono',monospace;font-weight:700;font-size:14px;letter-spacing:0.02em;color:#0F2A3D;background:#5EE3B1;padding:13px 22px;border-radius:999px;text-decoration:none;" style-hover="background:#4fd3a2;">Lees wat anderen zeggen <span style="font-size:17px;">&#8594;</span></a>
+      </div>
+    </figure>
+  </div>
+</section>
+
+<section data-screen-label="Founder contact" data-sec style="padding:40px 40px 104px;">
+  <div data-reveal style="max-width:1280px;margin:0 auto;background:#FBF9F2;border:1px solid rgba(15,42,61,0.08);border-radius:28px;padding:56px;overflow:hidden;">
+    <div data-founder style="display:grid;grid-template-columns:1.2fr 0.8fr;gap:48px;align-items:center;">
+      <div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:15px;letter-spacing:0.16em;text-transform:uppercase;color:#5F8368;font-weight:700;margin-bottom:22px;">Even sparren?</div>
+        <h2 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(34px,3.8vw,54px);line-height:1.04;letter-spacing:-0.01em;color:#0F2A3D;margin:0 0 20px;">Laten we samen iets moois bouwen.</h2>
+        <p style="font-size:18px;line-height:1.55;color:rgba(15,42,61,0.7);max-width:460px;margin:0 0 32px;">Een vraagstuk rond data, AI of een dataplatform? Bel of app Tim vrijblijvend — we denken graag met je mee en verkennen samen wat mogelijk is.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:13px;">
+          <a href="tel:+31629472470" style="display:inline-flex;align-items:center;gap:9px;background:#C8A04A;color:#0F2A3D;font-weight:700;font-size:16px;padding:14px 26px;border-radius:999px;text-decoration:none;" style-hover="background:#b88f3a;">Bel 06 29472470</a>
+          <a href="https://wa.me/31629472470" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:10px;background:#fff;color:#0F2A3D;font-weight:700;font-size:16px;padding:14px 24px;border-radius:999px;border:1px solid rgba(15,42,61,0.18);text-decoration:none;" style-hover="border-color:#0F2A3D;"><span style="width:9px;height:9px;border-radius:2px;background:#5EE3B1;display:inline-block;"></span>WhatsApp Tim</a>
+        </div>
+      </div>
+      <div style="position:relative;width:320px;height:400px;flex:none;">
+        <div style="position:absolute;left:18px;top:20px;width:300px;height:380px;border-radius:150px;background:#5F8368;"></div>
+        <div style="position:absolute;left:0;top:0;width:300px;height:380px;border-radius:150px;overflow:hidden;background:#0F2A3D;background-image:repeating-linear-gradient(135deg,rgba(245,241,232,0.06) 0 10px,transparent 10px 20px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;text-align:center;padding:24px;">
+          <img src="assets/logo/ghost-cream.png" alt="" aria-hidden="true" style="width:120px;opacity:0.16;position:absolute;bottom:-10px;right:-10px;pointer-events:none;">
+          <span style="position:relative;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(245,241,232,0.7);">foto van Tim</span>
+          <span style="position:relative;font-size:13px;color:rgba(245,241,232,0.45);max-width:180px;line-height:1.4;">portretfoto, staand · 300×380</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer data-sec style="background:#0F2A3D;color:rgba(245,241,232,0.75);padding:72px 40px 36px;">
+  <div style="max-width:1280px;margin:0 auto;">
+    <div data-cols style="display:grid;grid-template-columns:1.6fr 1fr 1.2fr;gap:48px;padding-bottom:48px;border-bottom:1px solid rgba(245,241,232,0.12);">
+      <div>
+        <a href="/" style="display:flex;align-items:center;gap:11px;text-decoration:none;margin-bottom:22px;">
+          <img src="assets/logo/logo-cream.png" alt="Timformatie logo" width="30" height="32" style="display:block;width:30px;height:auto;">
+          <span style="font-family:'Archivo',sans-serif;font-weight:800;font-size:22px;letter-spacing:-0.02em;color:#F5F1E8;">timformatie<span style="color:#5EE3B1;">.</span></span>
+        </a>
+        <p style="font-size:15.5px;line-height:1.6;color:rgba(245,241,232,0.6);max-width:420px;margin:0;">Timformatie is een data- en AI-consultancy uit Rotterdam die open, soevereine dataplatformen, datastrategie en interactieve data- en AI-toepassingen bouwt. We werken vooral in de zorg, het onderwijs en het sociale domein.</p>
+      </div>
+      <div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(245,241,232,0.45);margin-bottom:18px;">Navigatie</div>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          <a href="Expertise.dc.html" style="font-size:15.5px;color:rgba(245,241,232,0.75);text-decoration:none;" style-hover="color:#F5F1E8;">Expertise</a>
+          <a href="Projecten.dc.html" style="font-size:15.5px;color:rgba(245,241,232,0.75);text-decoration:none;" style-hover="color:#F5F1E8;">Projecten</a>
+          <a href="OverOns.dc.html" style="font-size:15.5px;color:rgba(245,241,232,0.75);text-decoration:none;" style-hover="color:#F5F1E8;">Over ons</a>
+          <a href="WerkenBij.dc.html" style="font-size:15.5px;color:rgba(245,241,232,0.75);text-decoration:none;" style-hover="color:#F5F1E8;">Werken bij</a>
+          <a href="Contact.dc.html" style="font-size:15.5px;color:rgba(245,241,232,0.75);text-decoration:none;" style-hover="color:#F5F1E8;">Contact</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(245,241,232,0.45);margin-bottom:18px;">Contact</div>
+        <div style="display:flex;flex-direction:column;gap:12px;font-size:15.5px;">
+          <a href="tel:+31629472470" style="color:rgba(245,241,232,0.75);text-decoration:none;" style-hover="color:#F5F1E8;">06 29472470</a>
+          <a href="mailto:info@timformatie.nl" style="color:rgba(245,241,232,0.75);text-decoration:none;" style-hover="color:#F5F1E8;">info@timformatie.nl</a>
+          <a href="mailto:sollicitatie@timformatie.nl" style="color:rgba(245,241,232,0.75);text-decoration:none;" style-hover="color:#F5F1E8;">sollicitatie@timformatie.nl</a>
+          <span style="color:rgba(245,241,232,0.75);">Rotterdam</span>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;padding-top:28px;">
+      <span style="font-size:13.5px;color:rgba(245,241,232,0.45);">© 2026 Timformatie · Van data naar actie.</span>
+      <div style="display:flex;align-items:center;gap:18px;">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:12.5px;color:rgba(245,241,232,0.45);">NL</span>
+        <a href="#" style="font-family:'JetBrains Mono',monospace;font-size:12.5px;color:rgba(245,241,232,0.6);text-decoration:none;" style-hover="color:#F5F1E8;">EN</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;highlight&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Mint&quot;,&quot;Ochre&quot;,&quot;Sage&quot;],&quot;default&quot;:&quot;Mint&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;motion&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Vol&quot;,&quot;Uit&quot;],&quot;default&quot;:&quot;Vol&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  renderVals() { return {}; }
+
+  buildGraphic(reduce) {
+    const host = document.getElementById('heroGraphic');
+    if (!host || host.dataset.built) return;
+    host.dataset.built = '1';
+    const cols = 11, rows = 13, cell = 38, w = cols * cell, h = rows * cell;
+    const form = document.createElement('div');
+    form.style.cssText = 'position:relative;width:' + w + 'px;height:' + h + 'px;';
+    if (!reduce) form.style.animation = 'breathe 9s ease-in-out 7s infinite';
+    const maskCss = "-webkit-mask:url('assets/logo/logo-sage.png') center/contain no-repeat;mask:url('assets/logo/logo-sage.png') center/contain no-repeat;";
+    // constant ghost-t silhouette — always visible behind the squares
+    const ghost = document.createElement('div');
+    ghost.style.cssText = 'position:absolute;inset:0;width:' + w + 'px;height:' + h + 'px;background:#5F8368;opacity:0.14;' + maskCss;
+    form.appendChild(ghost);
+    // squares that gather into the t-mark; the dot stays mint
+    const masked = document.createElement('div');
+    masked.style.cssText = 'position:absolute;inset:0;width:' + w + 'px;height:' + h + 'px;' + maskCss;
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < cols; c++) {
+        const ang = Math.random() * Math.PI * 2, dist = 300 + Math.random() * 700, delay = Math.random() * 2.6;
+        const s = document.createElement('div');
+        s.style.cssText = 'position:absolute;left:' + (c * cell) + 'px;top:' + (r * cell) + 'px;width:' + cell + 'px;height:' + cell + 'px;background:#5F8368;border-radius:4px;';
+        if (reduce) { s.style.opacity = '1'; }
+        else {
+          s.style.opacity = '0';
+          s.style.setProperty('--dx', (Math.cos(ang) * dist) + 'px');
+          s.style.setProperty('--dy', (Math.sin(ang) * dist) + 'px');
+          s.style.animation = 'gather 6.5s cubic-bezier(.4,0,.2,1) ' + delay + 's forwards';
+        }
+        masked.appendChild(s);
+      }
+    }
+    form.appendChild(masked);
+    host.appendChild(form);
+  }
+
+  buildMarquee() {
+    const track = document.getElementById('marqueeTrack');
+    if (!track || track.dataset.built) return;
+    track.dataset.built = '1';
+    const names = ['SEIN','OculomiX','Proctos Kliniek','Academy het Dorp','Samergo','TestJeLeefstijl','Erasmus MC','Rijndam','PharmAccess','NHR','Equipe','Gezondheid in Zicht'];
+    const dotc = ['#5F8368','#C8A04A','#5EE3B1','#3F5D47'];
+    const row = () => {
+      const d = document.createElement('div');
+      d.style.cssText = 'display:flex;align-items:center;gap:0;';
+      names.forEach((n, i) => {
+        const sp = document.createElement('span');
+        sp.textContent = n;
+        sp.style.cssText = "font-family:'Archivo',sans-serif;font-weight:700;font-size:28px;letter-spacing:-0.02em;color:rgba(15,42,61,0.4);padding:0 36px;white-space:nowrap;";
+        d.appendChild(sp);
+        const dot = document.createElement('span');
+        dot.style.cssText = 'width:7px;height:7px;border-radius:2px;flex:none;background:' + dotc[i % dotc.length] + ';';
+        d.appendChild(dot);
+      });
+      return d;
+    };
+    track.appendChild(row());
+    track.appendChild(row());
+  }
+
+  applyHighlight() {
+    const map = { Mint: '#5EE3B1', Ochre: '#C8A04A', Sage: '#C9D8CC' };
+    const c = map[this.props.highlight] || '#5EE3B1';
+    if (this._lastHl === c) return;
+    this._lastHl = c;
+    document.querySelectorAll('[data-mark]').forEach(el => { el.style.background = c; });
+  }
+
+  componentDidMount() {
+    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const off = this.props.motion === 'Uit';
+    this.applyHighlight();
+    this.buildGraphic(reduce || off);
+    this.buildMarquee();
+
+    // scroll reveal — with hard fallbacks so nothing ever stays hidden
+    const items = Array.from(document.querySelectorAll('[data-reveal]'));
+    const show = (el) => { el.style.opacity = '1'; el.style.transform = 'none'; };
+    if (!reduce && !off && 'IntersectionObserver' in window) {
+      const vh = window.innerHeight || 800;
+      items.forEach(el => {
+        const r = el.getBoundingClientRect();
+        if (r.top < vh * 0.92) { show(el); return; } // already in/near view: paint now
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(26px)';
+        el.style.transition = 'opacity .7s cubic-bezier(.4,0,.2,1), transform .7s cubic-bezier(.4,0,.2,1)';
+        el.setAttribute('data-hidden', '1');
+      });
+      const io = new IntersectionObserver((ents) => {
+        ents.forEach(e => {
+          if (e.isIntersecting) { show(e.target); e.target.removeAttribute('data-hidden'); io.unobserve(e.target); }
+        });
+      }, { threshold: 0, rootMargin: '0px 0px -10% 0px' });
+      items.forEach(el => { if (el.getAttribute('data-hidden')) io.observe(el); });
+      // safety net: reveal anything still hidden after 3s no matter what
+      this._safety = setTimeout(() => { items.forEach(el => { if (el.getAttribute('data-hidden')) show(el); }); }, 3000);
+    } else {
+      items.forEach(show);
+    }
+
+    // cursor parallax on hero graphic
+    const hero = document.getElementById('heroSection');
+    const fig = document.getElementById('heroGraphic');
+    if (hero && fig && !reduce && !off) {
+      this._move = (ev) => {
+        const r = hero.getBoundingClientRect();
+        const dx = (ev.clientX - (r.left + r.width / 2)) / r.width;
+        const dy = (ev.clientY - (r.top + r.height / 2)) / r.height;
+        fig.style.transform = 'translate(' + (dx * 22) + 'px,' + (dy * 18) + 'px)';
+      };
+      this._leave = () => { fig.style.transition = 'transform .6s ease'; fig.style.transform = 'none'; setTimeout(() => { if (fig) fig.style.transition = 'transform .12s ease-out'; }, 600); };
+      fig.style.transition = 'transform .12s ease-out';
+      hero.addEventListener('mousemove', this._move);
+      hero.addEventListener('mouseleave', this._leave);
+    }
+
+    // horizontal scroll parallax — image drifts sideways as you scroll past it
+    const pxEls = Array.from(document.querySelectorAll('[data-px]'));
+    if (pxEls.length && !reduce && !off) {
+      this._px = () => {
+        const vh = window.innerHeight || 800;
+        pxEls.forEach(el => {
+          const r = el.getBoundingClientRect();
+          const p = Math.max(0, Math.min(1, (vh - r.top) / (vh + r.height)));
+          const range = parseFloat(el.getAttribute('data-px')) || 120;
+          el.style.transform = 'translate3d(' + ((p - 0.5) * 2 * range) + 'px,0,0)';
+        });
+      };
+      window.addEventListener('scroll', this._px, { passive: true });
+      window.addEventListener('resize', this._px, { passive: true });
+      this._px();
+    }
+  }
+
+  componentDidUpdate() { this.applyHighlight(); }
+
+  componentWillUnmount() {
+    const hero = document.getElementById('heroSection');
+    if (hero && this._move) hero.removeEventListener('mousemove', this._move);
+    if (hero && this._leave) hero.removeEventListener('mouseleave', this._leave);
+    if (this._px) { window.removeEventListener('scroll', this._px); window.removeEventListener('resize', this._px); }
+  }
+}
+</script>
+</body>
+</html>
