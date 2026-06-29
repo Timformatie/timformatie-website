@@ -85,6 +85,48 @@ async function renderSource(browser, src) {
   return { html, errs };
 }
 
+// Add a hamburger button + slide-down mobile menu, cloned from the page's own
+// desktop nav. Runs before the hover/link passes so the clones get processed too.
+function injectMobileNav(xdc, doc) {
+  const header = xdc.querySelector('header');
+  if (!header) return;
+  const desktopNav = header.querySelector('nav[data-nav]');
+  if (!desktopNav) return;
+  const rightDiv = desktopNav.parentElement?.lastElementChild || header;
+
+  const btn = doc.createElement('button');
+  btn.id = 'navToggle';
+  btn.type = 'button';
+  btn.className = 'dc-navtoggle';
+  btn.setAttribute('aria-label', 'Menu');
+  btn.setAttribute('aria-expanded', 'false');
+  btn.setAttribute('aria-controls', 'mobileNav');
+  btn.innerHTML = '<span></span><span></span><span></span>';
+  rightDiv.appendChild(btn);
+
+  const panel = doc.createElement('nav');
+  panel.id = 'mobileNav';
+  panel.className = 'dc-mobilenav';
+  panel.setAttribute('aria-label', 'Hoofdmenu');
+  panel.setAttribute('hidden', '');
+  const inner = doc.createElement('div');
+  inner.className = 'dc-mobilenav-inner';
+  for (const a of desktopNav.querySelectorAll('a')) {
+    const c = a.cloneNode(true);
+    c.removeAttribute('data-nav');
+    inner.appendChild(c);
+  }
+  const cta = header.querySelector('a[data-nav]');
+  if (cta) {
+    const c = cta.cloneNode(true);
+    c.removeAttribute('data-nav');
+    c.classList.add('dc-mobile-cta');
+    inner.appendChild(c);
+  }
+  panel.appendChild(inner);
+  header.insertAdjacentElement('afterend', panel);
+}
+
 // ---- transform source -> clean static HTML ---------------------------------
 function transform({ source, rendered, page }) {
   const srcDom = new JSDOM(source);
@@ -108,6 +150,9 @@ function transform({ source, rendered, page }) {
     }
     helmet.remove();
   }
+
+  // --- add mobile navigation (cloned from desktop nav) before hover/link passes
+  injectMobileNav(xdc, srcDoc);
 
   // --- splice JS-generated fragments: elements empty in source but filled after render
   for (const el of xdc.querySelectorAll('[id]')) {
@@ -171,8 +216,18 @@ function transform({ source, rendered, page }) {
     `<link rel="apple-touch-icon" href="/assets/logo/logo-sage.png">`,
     ...headExtras,
     hoverCss ? `<style>${hoverCss}</style>` : '',
-    // reveal gating + visible focus, applied only when JS is active
-    `<style>html.dc-js [data-reveal]{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}html.dc-js [data-reveal].dc-in{opacity:1;transform:none}a:focus-visible,button:focus-visible{outline:2px solid #5F8368;outline-offset:2px}</style>`,
+    // reveal gating + visible focus + mobile navigation
+    `<style>html.dc-js [data-reveal]{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}html.dc-js [data-reveal].dc-in{opacity:1;transform:none}a:focus-visible,button:focus-visible{outline:2px solid #5F8368;outline-offset:2px}` +
+      `.dc-navtoggle{display:none;flex-direction:column;justify-content:center;gap:5px;width:46px;height:42px;padding:0 11px;border:1px solid rgba(15,42,61,0.18);border-radius:11px;background:#FBF9F2;cursor:pointer}` +
+      `.dc-navtoggle span{display:block;height:2px;width:100%;background:#0F2A3D;border-radius:2px;transition:transform .22s ease,opacity .22s ease}` +
+      `.dc-navtoggle[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}` +
+      `.dc-navtoggle[aria-expanded="true"] span:nth-child(2){opacity:0}` +
+      `.dc-navtoggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}` +
+      `.dc-mobilenav{display:none;background:rgba(245,241,232,0.98);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid rgba(15,42,61,0.1);position:sticky;top:62px;z-index:55}` +
+      `.dc-mobilenav-inner{max-width:1280px;margin:0 auto;padding:10px 22px 22px;display:flex;flex-direction:column}` +
+      `.dc-mobilenav a{padding:14px 6px;font-size:17px;font-weight:600;color:#0F2A3D;text-decoration:none;border-bottom:1px solid rgba(15,42,61,0.07)}` +
+      `.dc-mobilenav a.dc-mobile-cta{margin-top:16px;border:none;background:#C8A04A;border-radius:999px;text-align:center;padding:15px 20px}` +
+      `@media(max-width:900px){.dc-navtoggle{display:flex}.dc-mobilenav:not([hidden]){display:block}}</style>`,
     `<script src="/assets/js/enhance.js" defer></script>`,
   ].filter(Boolean).join('\n');
 
