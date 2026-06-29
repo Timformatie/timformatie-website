@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Werken bij, (Junior) Cloud Platform Engineer | Timformatie</title>
+<meta name="description" content="Werken bij Timformatie: we zoeken een (Junior) Cloud Platform Engineer in Rotterdam. Bouw mee aan open, soevereine dataplatformen met echte impact in de zorg.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Source+Sans+3:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{font-family:'Source Sans 3',-apple-system,'Segoe UI',Arial,sans-serif;color:#0F2A3D;background:#F5F1E8;-webkit-font-smoothing:antialiased;}
+  a{color:inherit}
+  ::selection{background:#5EE3B1;color:#0F2A3D}
+  html{scroll-behavior:smooth}
+  @media(max-width:900px){
+    [data-cols]{grid-template-columns:1fr !important}
+    [data-nav]{display:none !important}
+    [data-sec]{padding-left:22px !important;padding-right:22px !important}
+    [data-h1]{font-size:clamp(42px,11vw,72px) !important}
+    [data-why]{grid-template-columns:1fr !important}
+    [data-2col]{grid-template-columns:1fr !important}
+  }
+</style>
+<script>(function(){var KEY='tim-cookie-consent';function read(){try{var r=localStorage.getItem(KEY);return r?JSON.parse(r):null;}catch(e){return null;}}function write(c){var d={functional:true,preferences:!!c.preferences,statistics:!!c.statistics,marketing:!!c.marketing,ts:Date.now(),version:1};try{localStorage.setItem(KEY,JSON.stringify(d));}catch(e){}return d;}function removeBanner(){var b=document.getElementById('timCookieBanner');if(b&&b.parentNode)b.parentNode.removeChild(b);}function sync(){if(typeof window.__timPrefSync==='function'){try{window.__timPrefSync();}catch(e){}}}function build(){if(read())return;if(document.getElementById('timCookieBanner'))return;if(!document.body)return;var w=document.createElement('div');w.id='timCookieBanner';w.setAttribute('role','dialog');w.setAttribute('aria-label','Cookievoorkeuren');w.style.cssText='position:fixed;left:0;right:0;bottom:0;z-index:9999;padding:16px;font-family:Source Sans 3,-apple-system,Segoe UI,Arial,sans-serif;';w.innerHTML='<div style=\"max-width:1000px;margin:0 auto;background:#0F2A3D;color:#F5F1E8;border-radius:18px;box-shadow:0 24px 60px rgba(0,0,0,0.35);padding:22px 26px;display:flex;align-items:center;gap:24px;flex-wrap:wrap;\"><div style=\"flex:1;min-width:240px;\"><div style=\"font-family:Archivo,sans-serif;font-weight:700;font-size:17px;color:#F5F1E8;margin-bottom:6px;\">We gebruiken cookies</div><p style=\"margin:0;font-size:14.5px;line-height:1.5;color:rgba(245,241,232,0.78);\">Functionele cookies zijn altijd actief. Voor voorkeuren, statistieken en marketing vragen we je toestemming. Lees meer in ons <a href=\"Cookiebeleid.dc.html\" style=\"color:#5EE3B1;text-decoration:underline;\">cookiebeleid</a>.</p></div><div style=\"display:flex;gap:10px;flex-wrap:wrap;\"><button type=\"button\" id=\"timBnSettings\" style=\"background:transparent;color:#F5F1E8;font-weight:600;font-size:14.5px;padding:12px 18px;border:1px solid rgba(245,241,232,0.3);border-radius:9px;cursor:pointer;\">Voorkeuren</button><button type=\"button\" id=\"timBnReject\" style=\"background:transparent;color:#F5F1E8;font-weight:600;font-size:14.5px;padding:12px 18px;border:1px solid rgba(245,241,232,0.3);border-radius:9px;cursor:pointer;\">Weigeren</button><button type=\"button\" id=\"timBnAccept\" style=\"background:#EE6A5A;color:#FBF9F2;font-weight:700;font-size:14.5px;padding:12px 18px;border:none;border-radius:9px;cursor:pointer;box-shadow:0 8px 20px rgba(238,106,90,0.3);\">Alles accepteren</button></div></div>';document.body.appendChild(w);document.getElementById('timBnAccept').addEventListener('click',function(){write({preferences:true,statistics:true,marketing:true});removeBanner();sync();});document.getElementById('timBnReject').addEventListener('click',function(){write({preferences:false,statistics:false,marketing:false});removeBanner();sync();});document.getElementById('timBnSettings').addEventListener('click',function(){var pc=document.getElementById('prefCenter');if(pc){var t=window.pageYOffset+pc.getBoundingClientRect().top-90;window.scrollTo({top:t,behavior:'smooth'});}else{window.location.href='Cookiebeleid.dc.html';}});}function init(){try{build();}catch(e){}}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init);}else{init();}[200,700,1500,3000].forEach(function(t){setTimeout(init,t);});window.TimCookies={read:read,write:write,removeBanner:removeBanner};})();</script>
+</helmet>
+<div style="background:#F5F1E8;overflow-x:hidden;">
+
+<header style="position:sticky;top:0;z-index:60;background:rgba(245,241,232,0.82);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid rgba(15,42,61,0.08);">
+  <div style="max-width:1280px;margin:0 auto;padding:15px 40px;display:flex;align-items:center;justify-content:space-between;gap:32px;">
+    <a href="Home.dc.html" style="display:flex;align-items:center;gap:11px;text-decoration:none;">
+      <img src="assets/logo/logo-sage.png" alt="Timformatie logo" width="30" height="32" style="display:block;width:30px;height:auto;">
+      <span style="font-family:'Archivo',sans-serif;font-weight:800;font-size:22px;letter-spacing:-0.02em;color:#0F2A3D;">timformatie<span style="color:#5F8368;">.</span></span>
+    </a>
+    <nav data-nav style="display:flex;align-items:center;gap:30px;">
+      <a href="Home.dc.html" data-en="Home" style="font-size:15px;font-weight:600;color:rgba(15,42,61,0.6);text-decoration:none;" style-hover="color:#0F2A3D;">Home</a>
+      <a href="Expertise.dc.html" data-en="Expertise" style="font-size:15px;font-weight:600;color:rgba(15,42,61,0.6);text-decoration:none;" style-hover="color:#0F2A3D;">Expertise</a>
+      <a href="Projecten.dc.html" data-en="Projects" style="font-size:15px;font-weight:600;color:rgba(15,42,61,0.6);text-decoration:none;" style-hover="color:#0F2A3D;">Projecten</a>
+      <a href="OverOns.dc.html" data-en="About us" style="font-size:15px;font-weight:600;color:#0F2A3D;text-decoration:none;">Over ons</a>
+      <a href="Contact.dc.html" data-en="Contact" style="font-size:15px;font-weight:600;color:rgba(15,42,61,0.6);text-decoration:none;" style-hover="color:#0F2A3D;">Contact</a>
+    </nav>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <div style="display:flex;align-items:center;border:1px solid rgba(15,42,61,0.18);border-radius:999px;overflow:hidden;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;letter-spacing:0.04em;">
+        <button id="langNL" type="button" style="border:none;cursor:pointer;padding:6px 11px;background:#0F2A3D;color:#F5F1E8;font:inherit;">NL</button>
+        <button id="langEN" type="button" style="border:none;cursor:pointer;padding:6px 11px;background:transparent;color:rgba(15,42,61,0.6);font:inherit;">EN</button>
+      </div>
+      <a href="mailto:sollicitatie@timformatie.nl" data-nav data-en="Apply &#8594;" style="display:inline-flex;align-items:center;gap:8px;background:#C8A04A;color:#0F2A3D;font-weight:700;font-size:15px;padding:11px 20px;border-radius:999px;text-decoration:none;" style-hover="background:#b88f3a;">Solliciteer &#8594;</a>
+    </div>
+  </div>
+</header>
+
+<section data-screen-label="Werken bij hero" data-sec style="position:relative;padding:32px 40px 48px;overflow:hidden;">
+  <div style="max-width:1280px;margin:0 auto;">
+    <nav aria-label="kruimelpad" data-reveal style="font-family:'JetBrains Mono',monospace;font-size:12.5px;letter-spacing:0.06em;color:rgba(15,42,61,0.5);margin-bottom:30px;display:flex;align-items:center;gap:9px;">
+      <a href="OverOns.dc.html" data-en="About us" style="text-decoration:none;color:rgba(15,42,61,0.5);" style-hover="color:#5F8368;">Over ons</a>
+      <span>/</span>
+      <span data-en="Careers" style="color:#5F8368;">Werken bij</span>
+    </nav>
+    <div style="position:relative;overflow:hidden;background:#0F2A3D;border-radius:28px;padding:clamp(40px,5vw,76px);">
+      <img src="assets/logo/ghost-cream.png" alt="" aria-hidden="true" style="position:absolute;right:-6%;bottom:-34%;width:38%;max-width:480px;opacity:0.08;pointer-events:none;">
+      <div data-reveal style="position:relative;z-index:1;max-width:860px;">
+        <div style="display:inline-flex;align-items:center;gap:9px;background:rgba(94,227,177,0.14);border:1px solid rgba(94,227,177,0.4);border-radius:999px;padding:7px 15px;margin-bottom:24px;">
+          <span style="width:8px;height:8px;border-radius:50%;background:#5EE3B1;"></span>
+          <span data-en="1 open vacancy" style="font-family:'JetBrains Mono',monospace;font-size:12.5px;letter-spacing:0.08em;color:#5EE3B1;font-weight:600;">1 open vacature</span>
+        </div>
+        <h1 data-h1 data-en-html="Build data with real <span data-mark style='background:#5EE3B1;color:#0F2A3D;padding:0.02em 0.14em;box-decoration-break:clone;-webkit-box-decoration-break:clone;'>impact</span>." style="font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(44px,5.6vw,84px);line-height:0.99;letter-spacing:-0.02em;color:#F5F1E8;margin:0 0 24px;">Bouw mee aan data met echte <span data-mark style="background:#5EE3B1;color:#0F2A3D;padding:0.02em 0.14em;box-decoration-break:clone;-webkit-box-decoration-break:clone;">impact</span>.</h1>
+        <p data-en="At Timformatie you work on open, sovereign data platforms that genuinely help healthcare, education and the social sector forward. Small team, short lines, plenty of ownership, and time to keep learning." style="font-size:clamp(18px,1.5vw,21px);line-height:1.55;color:rgba(245,241,232,0.78);max-width:620px;margin:0 0 34px;">Bij Timformatie werk je aan open, soevereine dataplatformen die de zorg, het onderwijs en het sociale domein écht verder helpen. Klein team, korte lijnen, veel eigenaarschap, en tijd om te blijven leren.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:13px;">
+          <a href="#vacature" data-en="View the vacancy &#8594;" style="display:inline-flex;align-items:center;gap:9px;background:#C8A04A;color:#0F2A3D;font-weight:700;font-size:16px;padding:15px 28px;border-radius:999px;text-decoration:none;" style-hover="background:#b88f3a;">Bekijk de vacature &#8594;</a>
+          <a href="#waarom" data-en="Why Timformatie" style="display:inline-flex;align-items:center;gap:9px;background:transparent;color:#F5F1E8;font-weight:600;font-size:16px;padding:15px 26px;border-radius:999px;border:1px solid rgba(245,241,232,0.3);text-decoration:none;" style-hover="border-color:#F5F1E8;">Waarom Timformatie?</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="waarom" data-screen-label="Waarom Timformatie" data-sec style="padding:36px 40px 24px;">
+  <div style="max-width:1280px;margin:0 auto;">
+    <div data-reveal style="max-width:760px;margin-bottom:42px;">
+      <div data-en="Why us" style="font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:0.16em;text-transform:uppercase;color:#5F8368;font-weight:700;margin-bottom:14px;">Waarom Timformatie</div>
+      <h2 data-en="Four reasons to join." style="font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(30px,3.4vw,46px);line-height:1.02;letter-spacing:-0.02em;color:#0F2A3D;margin:0;">Vier redenen om voor ons te kiezen.</h2>
+    </div>
+    <div data-reveal data-why style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px;">
+      <div style="background:#FBF9F2;border:1px solid rgba(15,42,61,0.1);border-radius:20px;padding:34px 32px;">
+        <div style="width:44px;height:44px;border-radius:12px;background:rgba(95,131,104,0.14);display:flex;align-items:center;justify-content:center;margin-bottom:20px;"><span style="width:14px;height:14px;border-radius:3px;background:#5F8368;"></span></div>
+        <h3 data-en="Real impact" style="font-family:'Archivo',sans-serif;font-weight:800;font-size:22px;letter-spacing:-0.01em;color:#0F2A3D;margin:0 0 10px;">Echte impact</h3>
+        <p data-en="Your work lands directly with care professionals, researchers and patients. Not data for its own sake, but data turned into action." style="font-size:16.5px;line-height:1.58;color:rgba(15,42,61,0.74);margin:0;">Je werk landt direct bij zorgverleners, onderzoekers en patiënten. Geen data om de data, maar data die je omzet in actie.</p>
+      </div>
+      <div style="background:#FBF9F2;border:1px solid rgba(15,42,61,0.1);border-radius:20px;padding:34px 32px;">
+        <div style="width:44px;height:44px;border-radius:12px;background:rgba(200,160,74,0.16);display:flex;align-items:center;justify-content:center;margin-bottom:20px;"><span style="width:14px;height:14px;border-radius:3px;background:#C8A04A;"></span></div>
+        <h3 data-en="Open &amp; sovereign" style="font-family:'Archivo',sans-serif;font-weight:800;font-size:22px;letter-spacing:-0.01em;color:#0F2A3D;margin:0 0 10px;">Open &amp; soeverein</h3>
+        <p data-en="We build on open source and keep organisations the owners of their own data. Transparent, without vendor lock-in." style="font-size:16.5px;line-height:1.58;color:rgba(15,42,61,0.74);margin:0;">We bouwen op open source en houden organisaties eigenaar van hun eigen data. Transparant, zonder vendor lock-in.</p>
+      </div>
+      <div style="background:#FBF9F2;border:1px solid rgba(15,42,61,0.1);border-radius:20px;padding:34px 32px;">
+        <div style="width:44px;height:44px;border-radius:12px;background:rgba(238,106,90,0.14);display:flex;align-items:center;justify-content:center;margin-bottom:20px;"><span style="width:14px;height:14px;border-radius:3px;background:#EE6A5A;"></span></div>
+        <h3 data-en="A small team, lots of ownership" style="font-family:'Archivo',sans-serif;font-weight:800;font-size:22px;letter-spacing:-0.01em;color:#0F2A3D;margin:0 0 10px;">Klein team, veel eigenaarschap</h3>
+        <p data-en="Short lines, plenty of freedom and room to set direction yourself. What you build, you see come back." style="font-size:16.5px;line-height:1.58;color:rgba(15,42,61,0.74);margin:0;">Korte lijnen, veel vrijheid en ruimte om zelf richting te bepalen. Wat je bouwt, zie je terug.</p>
+      </div>
+      <div style="background:#FBF9F2;border:1px solid rgba(15,42,61,0.1);border-radius:20px;padding:34px 32px;">
+        <div style="width:44px;height:44px;border-radius:12px;background:rgba(63,93,71,0.14);display:flex;align-items:center;justify-content:center;margin-bottom:20px;"><span style="width:14px;height:14px;border-radius:3px;background:#3F5D47;"></span></div>
+        <h3 data-en="Keep learning" style="font-family:'Archivo',sans-serif;font-weight:800;font-size:22px;letter-spacing:-0.01em;color:#0F2A3D;margin:0 0 10px;">Blijven leren</h3>
+        <p data-en="Time and space to experiment with new technology, from data engineering to private AI." style="font-size:16.5px;line-height:1.58;color:rgba(15,42,61,0.74);margin:0;">Tijd en ruimte om te experimenteren met nieuwe technologie, van data engineering tot private AI.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="vacature" data-screen-label="Vacature" data-sec style="padding:56px 40px 40px;">
+  <div style="max-width:1000px;margin:0 auto;">
+    <div data-reveal style="font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:0.16em;text-transform:uppercase;color:#5F8368;font-weight:700;margin-bottom:18px;">Open vacature</div>
+
+    <article data-reveal style="background:#fff;border:1px solid rgba(15,42,61,0.1);border-radius:24px;overflow:hidden;box-shadow:0 8px 24px rgba(15,42,61,0.06);">
+
+      <div style="padding:clamp(30px,4vw,48px);border-bottom:1px solid rgba(15,42,61,0.1);">
+        <h2 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(28px,3.4vw,44px);line-height:1.03;letter-spacing:-0.02em;color:#0F2A3D;margin:0 0 18px;">(Junior) Cloud Platform Engineer</h2>
+        <div style="display:flex;flex-wrap:wrap;gap:9px;margin-bottom:22px;">
+          <span style="display:inline-flex;align-items:center;gap:8px;background:#FBF9F2;border:1px solid rgba(15,42,61,0.14);border-radius:999px;padding:7px 14px;font-weight:600;font-size:13.5px;"><span style="width:7px;height:7px;border-radius:50%;background:#5F8368;"></span>Rotterdam · naast Centraal</span>
+          <span style="background:#FBF9F2;border:1px solid rgba(15,42,61,0.14);border-radius:999px;padding:7px 14px;font-weight:600;font-size:13.5px;">Hybride · ~50% kantoor</span>
+          <span style="background:#FBF9F2;border:1px solid rgba(15,42,61,0.14);border-radius:999px;padding:7px 14px;font-weight:600;font-size:13.5px;">Fulltime</span>
+          <span style="background:#FBF9F2;border:1px solid rgba(15,42,61,0.14);border-radius:999px;padding:7px 14px;font-weight:600;font-size:13.5px;">Junior–medior</span>
+        </div>
+        <p style="font-size:18px;line-height:1.6;color:rgba(15,42,61,0.82);margin:0 0 26px;max-width:680px;">Ben jij handig met cloudplatformen en het werken met containers, en los je graag maatschappelijk relevante datavraagstukken op in een klein, snel ontwikkelend team? Dan heeft Timformatie een nieuwe uitdaging voor je. Om nog sterker te worden in inzichtgedreven besluitvorming zoeken we een (Junior) Cloud Platform Engineer.</p>
+        <a href="mailto:sollicitatie@timformatie.nl?subject=Sollicitatie%20(Junior)%20Cloud%20Platform%20Engineer" style="display:inline-flex;align-items:center;gap:9px;background:#C8A04A;color:#0F2A3D;font-weight:700;font-size:16px;padding:14px 26px;border-radius:999px;text-decoration:none;" style-hover="background:#b88f3a;">Solliciteer op deze functie &#8594;</a>
+      </div>
+
+      <div style="padding:clamp(30px,4vw,48px);border-bottom:1px solid rgba(15,42,61,0.1);">
+        <h3 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:24px;letter-spacing:-0.01em;color:#0F2A3D;margin:0 0 8px;">Over de functie</h3>
+        <p style="font-size:16.5px;line-height:1.6;color:rgba(15,42,61,0.74);margin:0 0 26px;max-width:680px;">Als Cloud Platform Engineer heb je onder andere deze verantwoordelijkheden:</p>
+        <div data-2col style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+          <div style="display:flex;gap:14px;">
+            <span style="flex:none;font-family:'JetBrains Mono',monospace;font-weight:600;font-size:13px;color:#5F8368;padding-top:3px;">01</span>
+            <div>
+              <div style="font-weight:700;font-size:16.5px;color:#0F2A3D;margin-bottom:4px;">Cloudomgevingen inrichten</div>
+              <p style="font-size:15.5px;line-height:1.55;color:rgba(15,42,61,0.72);margin:0;">Timformatie levert steeds meer cloudoplossingen aan klanten. Het inrichten, beheren en optimaliseren van de infrastructuur hoort bij je interesses.</p>
+            </div>
+          </div>
+          <div style="display:flex;gap:14px;">
+            <span style="flex:none;font-family:'JetBrains Mono',monospace;font-weight:600;font-size:13px;color:#5F8368;padding-top:3px;">02</span>
+            <div>
+              <div style="font-weight:700;font-size:16.5px;color:#0F2A3D;margin-bottom:4px;">CI/CD-pipelines inrichten &amp; verbeteren</div>
+              <p style="font-size:15.5px;line-height:1.55;color:rgba(15,42,61,0.72);margin:0;">Al onze oplossingen moeten worden gedeployed. Om dat soepel en efficiënt te laten verlopen, automatiseren we zoveel mogelijk.</p>
+            </div>
+          </div>
+          <div style="display:flex;gap:14px;">
+            <span style="flex:none;font-family:'JetBrains Mono',monospace;font-weight:600;font-size:13px;color:#5F8368;padding-top:3px;">03</span>
+            <div>
+              <div style="font-weight:700;font-size:16.5px;color:#0F2A3D;margin-bottom:4px;">Data pipelines opzetten</div>
+              <p style="font-size:15.5px;line-height:1.55;color:rgba(15,42,61,0.72);margin:0;">Naast de eerste inzichten gaan we een stap verder: dataverwerkingen automatiseren en verbeteringen in de praktijk brengen.</p>
+            </div>
+          </div>
+          <div style="display:flex;gap:14px;">
+            <span style="flex:none;font-family:'JetBrains Mono',monospace;font-weight:600;font-size:13px;color:#5F8368;padding-top:3px;">04</span>
+            <div>
+              <div style="font-weight:700;font-size:16.5px;color:#0F2A3D;margin-bottom:4px;">Self-hosted (open-source) software beheren</div>
+              <p style="font-size:15.5px;line-height:1.55;color:rgba(15,42,61,0.72);margin:0;">Je kunt verschillende self-hosted applicaties inrichten en beheren.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="padding:clamp(30px,4vw,48px);border-bottom:1px solid rgba(15,42,61,0.1);">
+        <h3 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:24px;letter-spacing:-0.01em;color:#0F2A3D;margin:0 0 22px;">Jouw profiel</h3>
+        <div style="display:flex;flex-direction:column;gap:14px;max-width:760px;">
+          <div style="display:flex;align-items:flex-start;gap:13px;"><span style="flex:none;width:22px;height:22px;border-radius:50%;background:rgba(95,131,104,0.16);display:flex;align-items:center;justify-content:center;margin-top:1px;"><span style="width:7px;height:7px;border-radius:2px;background:#5F8368;"></span></span><span style="font-size:16.5px;line-height:1.5;color:rgba(15,42,61,0.82);">Je spreekt, leest en schrijft vloeiend Nederlands en hebt geen visa-sponsorship nodig om in Nederland te werken.</span></div>
+          <div style="display:flex;align-items:flex-start;gap:13px;"><span style="flex:none;width:22px;height:22px;border-radius:50%;background:rgba(95,131,104,0.16);display:flex;align-items:center;justify-content:center;margin-top:1px;"><span style="width:7px;height:7px;border-radius:2px;background:#5F8368;"></span></span><span style="font-size:16.5px;line-height:1.5;color:rgba(15,42,61,0.82);">Je werkt ~50% van je tijd op kantoor (bij fulltime ± 3 dagen per week).</span></div>
+          <div style="display:flex;align-items:flex-start;gap:13px;"><span style="flex:none;width:22px;height:22px;border-radius:50%;background:rgba(95,131,104,0.16);display:flex;align-items:center;justify-content:center;margin-top:1px;"><span style="width:7px;height:7px;border-radius:2px;background:#5F8368;"></span></span><span style="font-size:16.5px;line-height:1.5;color:rgba(15,42,61,0.82);">Je bent leergierig en lost graag nieuwe uitdagingen op.</span></div>
+          <div style="display:flex;align-items:flex-start;gap:13px;"><span style="flex:none;width:22px;height:22px;border-radius:50%;background:rgba(95,131,104,0.16);display:flex;align-items:center;justify-content:center;margin-top:1px;"><span style="width:7px;height:7px;border-radius:2px;background:#5F8368;"></span></span><span style="font-size:16.5px;line-height:1.5;color:rgba(15,42,61,0.82);">Je bent bekend met cloudoplossingen als GCP en/of Azure en wilt je hierin doorontwikkelen.</span></div>
+          <div style="display:flex;align-items:flex-start;gap:13px;"><span style="flex:none;width:22px;height:22px;border-radius:50%;background:rgba(95,131,104,0.16);display:flex;align-items:center;justify-content:center;margin-top:1px;"><span style="width:7px;height:7px;border-radius:2px;background:#5F8368;"></span></span><span style="font-size:16.5px;line-height:1.5;color:rgba(15,42,61,0.82);">Je houdt van processen verbeteren en automatiseren; je hebt ervaring met Docker, GitHub Actions of vergelijkbaar, en kennis van Infrastructure as Code (Terraform of OpenTofu).</span></div>
+          <div style="display:flex;align-items:flex-start;gap:13px;"><span style="flex:none;width:22px;height:22px;border-radius:50%;background:rgba(95,131,104,0.16);display:flex;align-items:center;justify-content:center;margin-top:1px;"><span style="width:7px;height:7px;border-radius:2px;background:#5F8368;"></span></span><span style="font-size:16.5px;line-height:1.5;color:rgba(15,42,61,0.82);">Je hebt kennis van security: netwerken, routing en firewalls, en je zet zelf authenticatie &amp; autorisatie goed op.</span></div>
+          <div style="display:flex;align-items:flex-start;gap:13px;"><span style="flex:none;width:22px;height:22px;border-radius:50%;background:rgba(95,131,104,0.16);display:flex;align-items:center;justify-content:center;margin-top:1px;"><span style="width:7px;height:7px;border-radius:2px;background:#5F8368;"></span></span><span style="font-size:16.5px;line-height:1.5;color:rgba(15,42,61,0.82);">Je hebt affiniteit met programmeren, idealiter in Python.</span></div>
+          <div style="display:flex;align-items:flex-start;gap:13px;"><span style="flex:none;width:22px;height:22px;border-radius:50%;background:rgba(95,131,104,0.16);display:flex;align-items:center;justify-content:center;margin-top:1px;"><span style="width:7px;height:7px;border-radius:2px;background:#5F8368;"></span></span><span style="font-size:16.5px;line-height:1.5;color:rgba(15,42,61,0.82);">Je hebt een relevant hbo- of wo-diploma, bij voorkeur in een bètastudie (Econometrie, Wiskunde, Computer Science, Informatica, Natuurkunde of vergelijkbaar).</span></div>
+        </div>
+        <div style="margin-top:26px;background:#FBF9F2;border:1px solid rgba(15,42,61,0.1);border-radius:16px;padding:22px 24px;">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:#9A7A2F;font-weight:600;margin-bottom:14px;">Pré, ervaring met</div>
+          <div style="display:flex;flex-wrap:wrap;gap:9px;">
+            <span style="background:#fff;border:1px solid rgba(200,160,74,0.45);border-radius:999px;padding:7px 14px;font-weight:600;font-size:13.5px;">Kubernetes</span>
+            <span style="background:#fff;border:1px solid rgba(200,160,74,0.45);border-radius:999px;padding:7px 14px;font-weight:600;font-size:13.5px;">Proxmox</span>
+            <span style="background:#fff;border:1px solid rgba(200,160,74,0.45);border-radius:999px;padding:7px 14px;font-weight:600;font-size:13.5px;">Portainer</span>
+            <span style="background:#fff;border:1px solid rgba(200,160,74,0.45);border-radius:999px;padding:7px 14px;font-weight:600;font-size:13.5px;">Nginx</span>
+            <span style="background:#fff;border:1px solid rgba(200,160,74,0.45);border-radius:999px;padding:7px 14px;font-weight:600;font-size:13.5px;">Databricks / Snowflake / Fabric</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="padding:clamp(30px,4vw,48px);border-bottom:1px solid rgba(15,42,61,0.1);">
+        <h3 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:24px;letter-spacing:-0.01em;color:#0F2A3D;margin:0 0 22px;">Wat wij bieden</h3>
+        <div data-2col style="display:grid;grid-template-columns:1fr 1fr;gap:13px 28px;">
+          <div style="display:flex;align-items:flex-start;gap:12px;"><span style="flex:none;color:#5F8368;font-weight:800;font-size:17px;line-height:1.4;">+</span><span style="font-size:16px;line-height:1.5;color:rgba(15,42,61,0.82);">Écht impact maken met maatschappelijk relevante vraagstukken.</span></div>
+          <div style="display:flex;align-items:flex-start;gap:12px;"><span style="flex:none;color:#5F8368;font-weight:800;font-size:17px;line-height:1.4;">+</span><span style="font-size:16px;line-height:1.5;color:rgba(15,42,61,0.82);">Mooie arbeidsvoorwaarden: reiskostenvergoeding, goede pensioenregeling en alle hardware (o.a. een MacBook Pro).</span></div>
+          <div style="display:flex;align-items:flex-start;gap:12px;"><span style="flex:none;color:#5F8368;font-weight:800;font-size:17px;line-height:1.4;">+</span><span style="font-size:16px;line-height:1.5;color:rgba(15,42,61,0.82);">Flexibiliteit in werktijden, hybride en deels remote werken.</span></div>
+          <div style="display:flex;align-items:flex-start;gap:12px;"><span style="flex:none;color:#5F8368;font-weight:800;font-size:17px;line-height:1.4;">+</span><span style="font-size:16px;line-height:1.5;color:rgba(15,42,61,0.82);">25 vakantiedagen per jaar.</span></div>
+          <div style="display:flex;align-items:flex-start;gap:12px;"><span style="flex:none;color:#5F8368;font-weight:800;font-size:17px;line-height:1.4;">+</span><span style="font-size:16px;line-height:1.5;color:rgba(15,42,61,0.82);">Een leuke, goed bereikbare werkplek naast Rotterdam Centraal.</span></div>
+          <div style="display:flex;align-items:flex-start;gap:12px;"><span style="flex:none;color:#5F8368;font-weight:800;font-size:17px;line-height:1.4;">+</span><span style="font-size:16px;line-height:1.5;color:rgba(15,42,61,0.82);">Een afwisselende baan in een groeiende organisatie, structuur én autonomie vanaf dag 1.</span></div>
+          <div style="display:flex;align-items:flex-start;gap:12px;"><span style="flex:none;color:#5F8368;font-weight:800;font-size:17px;line-height:1.4;">+</span><span style="font-size:16px;line-height:1.5;color:rgba(15,42,61,0.82);">Een persoonlijk ontwikkelplan en ruimte voor jouw input &amp; initiatieven.</span></div>
+          <div style="display:flex;align-items:flex-start;gap:12px;"><span style="flex:none;color:#5F8368;font-weight:800;font-size:17px;line-height:1.4;">+</span><span style="font-size:16px;line-height:1.5;color:rgba(15,42,61,0.82);">Regelmatige teamuitjes en gezellige borrels.</span></div>
+          <div style="display:flex;align-items:flex-start;gap:12px;"><span style="flex:none;color:#5F8368;font-weight:800;font-size:17px;line-height:1.4;">+</span><span style="font-size:16px;line-height:1.5;color:rgba(15,42,61,0.82);">Een goede sfeer in een jong, ambitieus team met een open cultuur en korte lijnen.</span></div>
+        </div>
+      </div>
+
+      <div style="padding:clamp(30px,4vw,48px);">
+        <h3 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:24px;letter-spacing:-0.01em;color:#0F2A3D;margin:0 0 24px;">De procedure</h3>
+        <div style="display:flex;flex-direction:column;gap:0;max-width:760px;">
+          <div style="display:flex;gap:18px;padding-bottom:20px;border-left:2px solid rgba(95,131,104,0.25);margin-left:15px;padding-left:24px;position:relative;"><span style="position:absolute;left:-15px;top:0;width:30px;height:30px;border-radius:50%;background:#5F8368;color:#fff;font-family:'JetBrains Mono',monospace;font-weight:600;font-size:13px;display:flex;align-items:center;justify-content:center;">1</span><span style="font-size:16.5px;line-height:1.5;color:rgba(15,42,61,0.82);">Je stuurt je cv &amp; motivatie via sollicitatie@timformatie.nl.</span></div>
+          <div style="display:flex;gap:18px;padding-bottom:20px;border-left:2px solid rgba(95,131,104,0.25);margin-left:15px;padding-left:24px;position:relative;"><span style="position:absolute;left:-15px;top:0;width:30px;height:30px;border-radius:50%;background:#5F8368;color:#fff;font-family:'JetBrains Mono',monospace;font-weight:600;font-size:13px;display:flex;align-items:center;justify-content:center;">2</span><span style="font-size:16.5px;line-height:1.5;color:rgba(15,42,61,0.82);">Wij doen een eerste screening. Een match? Dan nemen we binnen een week contact op voor een eerste interview.</span></div>
+          <div style="display:flex;gap:18px;padding-bottom:20px;border-left:2px solid rgba(95,131,104,0.25);margin-left:15px;padding-left:24px;position:relative;"><span style="position:absolute;left:-15px;top:0;width:30px;height:30px;border-radius:50%;background:#5F8368;color:#fff;font-family:'JetBrains Mono',monospace;font-weight:600;font-size:13px;display:flex;align-items:center;justify-content:center;">3</span><span style="font-size:16.5px;line-height:1.5;color:rgba(15,42,61,0.82);">Een online interview met onze Operations Manager om elkaar te leren kennen, jij stelt ook al je vragen.</span></div>
+          <div style="display:flex;gap:18px;padding-bottom:20px;border-left:2px solid rgba(95,131,104,0.25);margin-left:15px;padding-left:24px;position:relative;"><span style="position:absolute;left:-15px;top:0;width:30px;height:30px;border-radius:50%;background:#5F8368;color:#fff;font-family:'JetBrains Mono',monospace;font-weight:600;font-size:13px;display:flex;align-items:center;justify-content:center;">4</span><span style="font-size:16.5px;line-height:1.5;color:rgba(15,42,61,0.82);">Een technisch interview op kantoor met onze Technical Lead, met wat thuis voorbereide content.</span></div>
+          <div style="display:flex;gap:18px;padding-bottom:20px;border-left:2px solid rgba(95,131,104,0.25);margin-left:15px;padding-left:24px;position:relative;"><span style="position:absolute;left:-15px;top:0;width:30px;height:30px;border-radius:50%;background:#5F8368;color:#fff;font-family:'JetBrains Mono',monospace;font-weight:600;font-size:13px;display:flex;align-items:center;justify-content:center;">5</span><span style="font-size:16.5px;line-height:1.5;color:rgba(15,42,61,0.82);">Een laatste gesprek op kantoor met onze founder, aansluitend een lunch met het team.</span></div>
+          <div style="display:flex;gap:18px;padding-left:24px;margin-left:15px;position:relative;"><span style="position:absolute;left:-15px;top:0;width:30px;height:30px;border-radius:50%;background:#5EE3B1;color:#0F2A3D;font-family:'JetBrains Mono',monospace;font-weight:600;font-size:14px;display:flex;align-items:center;justify-content:center;">&#10003;</span><span style="font-size:16.5px;line-height:1.5;color:#0F2A3D;font-weight:600;">Klopt het plaatje van beide kanten? Dan ontvang je een aanbieding!</span></div>
+        </div>
+        <div style="margin-top:28px;display:flex;align-items:flex-start;gap:13px;background:rgba(200,160,74,0.1);border:1px solid rgba(200,160,74,0.35);border-radius:14px;padding:18px 20px;">
+          <span style="flex:none;width:22px;height:22px;border-radius:50%;background:#C8A04A;color:#0F2A3D;font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center;margin-top:1px;">i</span>
+          <span style="font-size:15.5px;line-height:1.55;color:rgba(15,42,61,0.8);">Omdat je als Cloud Platform Engineer met gevoelige data werkt, is een Verklaring Omtrent Gedrag (VOG) onderdeel van de sollicitatieprocedure.</span>
+        </div>
+      </div>
+
+    </article>
+  </div>
+</section>
+
+<section data-screen-label="Sollicitatie CTA" data-sec style="padding:24px 40px 88px;">
+  <div data-reveal style="max-width:1000px;margin:0 auto;">
+    <div style="position:relative;overflow:hidden;background:#0F2A3D;border-radius:28px;padding:clamp(40px,5vw,64px);color:#F5F1E8;">
+      <img src="assets/logo/ghost-cream.png" alt="" aria-hidden="true" style="position:absolute;right:-6%;bottom:-36%;width:36%;max-width:440px;opacity:0.08;pointer-events:none;">
+      <div style="position:relative;z-index:1;max-width:640px;">
+        <h2 data-en="Ready to apply?" style="font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(28px,3.2vw,44px);line-height:1.04;letter-spacing:-0.02em;color:#F5F1E8;margin:0 0 14px;">Klaar om te solliciteren?</h2>
+        <p data-en="Mail your CV and motivation to sollicitatie@timformatie.nl. Don't tick every box but still interested? Let's talk anyway." style="font-size:18px;line-height:1.55;color:rgba(245,241,232,0.74);margin:0 0 30px;">Mail je cv en motivatiebrief naar sollicitatie@timformatie.nl. Voldoe je niet aan alle eisen maar ben je wel geïnteresseerd? Laten we vooral samen in gesprek gaan.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:13px;">
+          <a href="mailto:sollicitatie@timformatie.nl?subject=Sollicitatie%20(Junior)%20Cloud%20Platform%20Engineer" style="display:inline-flex;align-items:center;gap:9px;background:#C8A04A;color:#0F2A3D;font-weight:700;font-size:16px;padding:15px 28px;border-radius:999px;text-decoration:none;" style-hover="background:#b88f3a;">sollicitatie@timformatie.nl</a>
+          <a href="tel:+31629472470" data-en="Or call: 06 29472470" style="display:inline-flex;align-items:center;gap:9px;background:transparent;color:#F5F1E8;font-weight:600;font-size:16px;padding:15px 26px;border-radius:999px;border:1px solid rgba(245,241,232,0.3);text-decoration:none;" style-hover="border-color:#F5F1E8;">Of bel: 06 29472470</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer data-sec style="background:#0F2A3D;color:rgba(245,241,232,0.75);padding:72px 40px 36px;">
+  <div style="max-width:1280px;margin:0 auto;">
+    <div data-cols style="display:grid;grid-template-columns:1.6fr 1fr 1.2fr;gap:48px;padding-bottom:48px;border-bottom:1px solid rgba(245,241,232,0.12);">
+      <div>
+        <a href="Home.dc.html" style="display:flex;align-items:center;gap:11px;text-decoration:none;margin-bottom:22px;">
+          <img src="assets/logo/logo-cream.png" alt="Timformatie logo" width="30" height="32" style="display:block;width:30px;height:auto;">
+          <span style="font-family:'Archivo',sans-serif;font-weight:800;font-size:22px;letter-spacing:-0.02em;color:#F5F1E8;">timformatie<span style="color:#5EE3B1;">.</span></span>
+        </a>
+        <p data-en="Timformatie is a data and AI consultancy from Rotterdam that builds open, sovereign data platforms, data strategy and interactive data and AI applications. We work mainly in healthcare, education and the social sector." style="font-size:15.5px;line-height:1.6;color:rgba(245,241,232,0.6);max-width:420px;margin:0;">Timformatie is een data- en AI-consultancy uit Rotterdam die open, soevereine dataplatformen, datastrategie en interactieve data- en AI-toepassingen bouwt. We werken vooral in de zorg, het onderwijs en het sociale domein.</p>
+      </div>
+      <div>
+        <div data-en="Navigation" style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(245,241,232,0.45);margin-bottom:18px;">Navigatie</div>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          <a href="Expertise.dc.html" data-en="Expertise" style="font-size:15.5px;color:rgba(245,241,232,0.75);text-decoration:none;" style-hover="color:#F5F1E8;">Expertise</a>
+          <a href="Projecten.dc.html" data-en="Projects" style="font-size:15.5px;color:rgba(245,241,232,0.75);text-decoration:none;" style-hover="color:#F5F1E8;">Projecten</a>
+          <a href="OverOns.dc.html" data-en="About us" style="font-size:15.5px;color:rgba(245,241,232,0.75);text-decoration:none;" style-hover="color:#F5F1E8;">Over ons</a>
+          <a href="WerkenBij.dc.html" data-en="Careers" style="font-size:15.5px;color:#F5F1E8;text-decoration:none;">Werken bij</a>
+          <a href="Contact.dc.html" data-en="Contact" style="font-size:15.5px;color:rgba(245,241,232,0.75);text-decoration:none;" style-hover="color:#F5F1E8;">Contact</a>
+        </div>
+      </div>
+      <div>
+        <div data-en="Contact" style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(245,241,232,0.45);margin-bottom:18px;">Contact</div>
+        <div style="display:flex;flex-direction:column;gap:12px;font-size:15.5px;">
+          <a href="tel:+31629472470" style="color:rgba(245,241,232,0.75);text-decoration:none;" style-hover="color:#F5F1E8;">06 29472470</a>
+          <a href="mailto:info@timformatie.nl" style="color:rgba(245,241,232,0.75);text-decoration:none;" style-hover="color:#F5F1E8;">info@timformatie.nl</a>
+          <a href="Helpdesk.dc.html" data-en="Helpdesk" style="color:rgba(245,241,232,0.75);text-decoration:none;" style-hover="color:#F5F1E8;">Helpdesk</a>
+          <span style="color:rgba(245,241,232,0.75);">Stationsplein 45 · 3013 AK Rotterdam</span>
+          <a href="https://www.linkedin.com/company/69914196/" target="_blank" rel="noopener noreferrer" style="font-size:15.5px;color:rgba(245,241,232,0.75);text-decoration:none;display:inline-flex;align-items:center;gap:7px;" style-hover="color:#F5F1E8;"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14zM8.34 9.5H5.67V18.5h2.67V9.5zM7 5.6a1.55 1.55 0 1 0 0 3.1 1.55 1.55 0 0 0 0-3.1zM18.33 18.5v-4.93c0-2.64-1.41-3.87-3.29-3.87-1.52 0-2.2.84-2.58 1.43V9.5h-2.67V18.5h2.67v-4.77c0-1.26.24-2.48 1.8-2.48 1.54 0 1.56 1.44 1.56 2.56v4.69h2.78z"/></svg>LinkedIn</a>
+        </div>
+      </div>
+    </div>
+    <div data-certrow style="display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;padding:30px 0;border-bottom:1px solid rgba(245,241,232,0.12);">
+      <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
+        <div style="background:#FBF9F2;border-radius:12px;padding:14px 20px;display:flex;align-items:center;"><img src="assets/certs/iso-27001.png" alt="ISO 27001:2022 gecertificeerd door Brand Compliance" style="display:block;height:42px;width:auto;"></div>
+        <div style="background:#FBF9F2;border-radius:12px;padding:14px 20px;display:flex;align-items:center;"><img src="assets/certs/nen-7510.png" alt="NEN 7510-1:2024 gecertificeerd door Brand Compliance" style="display:block;height:42px;width:auto;"></div>
+      </div>
+      <a href="Informatiebeveiliging.dc.html" data-en="Read more about our information security →" style="display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:15px;color:#5EE3B1;text-decoration:none;" style-hover="color:#F5F1E8;">Lees meer over onze informatiebeveiliging →</a>
+    </div>
+
+    <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;padding-top:28px;">
+      <span style="font-size:13.5px;color:rgba(245,241,232,0.45);">© 2026 Timformatie · Van data naar actie.</span>
+      <div style="display:flex;align-items:center;gap:18px;flex-wrap:wrap;">
+        <a href="Privacy.dc.html" data-en="Privacy" style="font-size:13.5px;color:rgba(245,241,232,0.6);text-decoration:none;" style-hover="color:#F5F1E8;">Privacy</a>
+        <a href="Cookiebeleid.dc.html" data-en="Cookie policy" style="font-size:13.5px;color:rgba(245,241,232,0.6);text-decoration:none;" style-hover="color:#F5F1E8;">Cookiebeleid</a>
+      </div>
+      <div style="display:flex;align-items:center;gap:18px;">
+        <button id="langNLb" type="button" style="border:none;cursor:pointer;background:none;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:#F5F1E8;">NL</button>
+        <button id="langENb" type="button" style="border:none;cursor:pointer;background:none;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:rgba(245,241,232,0.6);">EN</button>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+
+  setLang(lang) {
+    document.querySelectorAll('[data-en]').forEach(el => {
+      if (el.dataset.nlText === undefined) el.dataset.nlText = el.textContent;
+      el.textContent = (lang === 'en') ? el.dataset.en : el.dataset.nlText;
+    });
+    document.querySelectorAll('[data-en-html]').forEach(el => {
+      if (el.dataset.nlHtml === undefined) el.dataset.nlHtml = el.innerHTML;
+      el.innerHTML = (lang === 'en') ? el.dataset.enHtml : el.dataset.nlHtml;
+    });
+    document.documentElement.setAttribute('lang', lang === 'en' ? 'en' : 'nl');
+    const on = '#0F2A3D', onTxt = '#F5F1E8', off = 'transparent', offTxt = 'rgba(15,42,61,0.6)';
+    const nl = document.getElementById('langNL'), en = document.getElementById('langEN');
+    if (nl && en) {
+      nl.style.background = lang === 'en' ? off : on; nl.style.color = lang === 'en' ? offTxt : onTxt;
+      en.style.background = lang === 'en' ? on : off; en.style.color = lang === 'en' ? onTxt : offTxt;
+    }
+    const nlb = document.getElementById('langNLb'), enb = document.getElementById('langENb');
+    if (nlb && enb) {
+      nlb.style.color = lang === 'en' ? 'rgba(245,241,232,0.6)' : '#F5F1E8';
+      enb.style.color = lang === 'en' ? '#F5F1E8' : 'rgba(245,241,232,0.6)';
+    }
+    try { localStorage.setItem('tim-lang', lang); } catch (e) {}
+  }
+
+  componentDidMount() {
+    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let lang = 'nl';
+    try { lang = localStorage.getItem('tim-lang') || 'nl'; } catch (e) {}
+    this.setLang(lang);
+
+    ['langNL', 'langNLb'].forEach(id => { const b = document.getElementById(id); if (b) b.addEventListener('click', () => this.setLang('nl')); });
+    ['langEN', 'langENb'].forEach(id => { const b = document.getElementById(id); if (b) b.addEventListener('click', () => this.setLang('en')); });
+
+    const items = Array.from(document.querySelectorAll('[data-reveal]'));
+    const show = (el) => { el.style.opacity = '1'; el.style.transform = 'none'; };
+    if (!reduce && 'IntersectionObserver' in window) {
+      const vh = window.innerHeight || 800;
+      items.forEach(el => {
+        const r = el.getBoundingClientRect();
+        if (r.top < vh * 0.92) { show(el); return; }
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(26px)';
+        el.style.transition = 'opacity .7s cubic-bezier(.4,0,.2,1), transform .7s cubic-bezier(.4,0,.2,1)';
+        el.setAttribute('data-hidden', '1');
+      });
+      const io = new IntersectionObserver((ents) => {
+        ents.forEach(e => { if (e.isIntersecting) { show(e.target); e.target.removeAttribute('data-hidden'); io.unobserve(e.target); } });
+      }, { threshold: 0, rootMargin: '0px 0px -10% 0px' });
+      items.forEach(el => { if (el.getAttribute('data-hidden')) io.observe(el); });
+      this._safety = setTimeout(() => { items.forEach(el => { if (el.getAttribute('data-hidden')) show(el); }); }, 3000);
+    } else { items.forEach(show); }
+  }
+
+  componentWillUnmount() {
+    if (this._safety) clearTimeout(this._safety);
+  }
+}
+</script>
+</body>
+</html>
