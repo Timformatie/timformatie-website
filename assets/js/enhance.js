@@ -38,8 +38,12 @@
   // NL is the source language. EN content lives in data-en (text) or
   // data-en-html (markup). Controls are tagged with data-setlang="nl|en".
   var LANG_KEY = 'tim-lang';
+  var currentLang = 'nl';
+  var langGroups = [];   // paired NL/EN controls with their active/inactive looks
+
   function applyLang(lang) {
     lang = lang === 'en' ? 'en' : 'nl';
+    currentLang = lang;
     var els = doc.querySelectorAll('[data-en], [data-en-html]');
     [].forEach.call(els, function (el) {
       if (el.getAttribute('data-nl-orig') === null) el.setAttribute('data-nl-orig', el.innerHTML);
@@ -55,18 +59,76 @@
     [].forEach.call(doc.querySelectorAll('[data-setlang]'), function (c) {
       c.setAttribute('aria-pressed', String(c.getAttribute('data-setlang') === lang));
     });
+    // move the highlighted ("active") look onto the chosen language control
+    langGroups.forEach(function (g) {
+      var on = lang === 'en' ? g.en : g.nl;
+      var off = lang === 'en' ? g.nl : g.en;
+      on.style.background = g.active.bg; on.style.color = g.active.fg;
+      off.style.background = g.inactive.bg; off.style.color = g.inactive.fg;
+    });
+    translateCookieBanner(lang);
     try { localStorage.setItem(LANG_KEY, lang); } catch (e) {}
   }
+
   function initLang() {
-    var ctrls = doc.querySelectorAll('[data-setlang]');
+    var ctrls = [].slice.call(doc.querySelectorAll('[data-setlang]'));
     if (!ctrls.length) return;
-    [].forEach.call(ctrls, function (c) {
+    var groups = [];
+    ctrls.forEach(function (c) {
       c.style.cursor = 'pointer';
       c.addEventListener('click', function (e) { e.preventDefault(); applyLang(c.getAttribute('data-setlang')); });
+      var p = c.parentNode, g = null, i;
+      for (i = 0; i < groups.length; i++) { if (groups[i].p === p) { g = groups[i]; break; } }
+      if (!g) { g = { p: p }; groups.push(g); }
+      g[c.getAttribute('data-setlang')] = c;
+    });
+    // NL starts active, EN starts inactive -> capture both looks (bg + color)
+    groups.forEach(function (g) {
+      if (g.nl && g.en) langGroups.push({
+        nl: g.nl, en: g.en,
+        active: { bg: g.nl.style.background, fg: g.nl.style.color },
+        inactive: { bg: g.en.style.background, fg: g.en.style.color }
+      });
     });
     var saved;
     try { saved = localStorage.getItem(LANG_KEY); } catch (e) {}
     if (saved === 'en') applyLang('en');
+  }
+
+  // --- Cookie-consent banner (its text is injected by a separate inline script) ---
+  function translateCookieBanner(lang) {
+    var b = doc.getElementById('timCookieBanner');
+    if (!b) return;
+    var en = lang === 'en';
+    var accept = doc.getElementById('timBnAccept'),
+        reject = doc.getElementById('timBnReject'),
+        settings = doc.getElementById('timBnSettings');
+    if (accept) accept.textContent = en ? 'Accept all' : 'Alles accepteren';
+    if (reject) reject.textContent = en ? 'Decline' : 'Weigeren';
+    if (settings) settings.textContent = en ? 'Preferences' : 'Voorkeuren';
+    var p = b.querySelector('p');
+    if (p) {
+      var a = p.querySelector('a');
+      var href = a ? a.getAttribute('href') : '/cookiebeleid.html';
+      var astyle = a ? (a.getAttribute('style') || '') : '';
+      p.innerHTML = (en
+        ? 'Functional cookies are always active. For preferences, statistics and marketing we ask your consent. Read more in our '
+        : 'Functionele cookies zijn altijd actief. Voor voorkeuren, statistieken en marketing vragen we je toestemming. Lees meer in ons ')
+        + '<a href="' + href + '" style="' + astyle + '">' + (en ? 'cookie policy' : 'cookiebeleid') + '</a>.';
+      var title = p.previousElementSibling;
+      if (title) title.textContent = en ? 'We use cookies' : 'We gebruiken cookies';
+    }
+  }
+
+  // The banner is added asynchronously by the consent script; translate it whenever
+  // it appears (and on every language switch via applyLang).
+  function watchCookieBanner() {
+    if (doc.getElementById('timCookieBanner')) { translateCookieBanner(currentLang); return; }
+    if (!('MutationObserver' in window) || !doc.body) return;
+    var mo = new MutationObserver(function () {
+      if (doc.getElementById('timCookieBanner')) { translateCookieBanner(currentLang); mo.disconnect(); }
+    });
+    mo.observe(doc.body, { childList: true });
   }
 
   // --- Scroll & cursor parallax (ported from the old dc-runtime) -------------
@@ -125,5 +187,5 @@
     window.addEventListener('resize', function () { if (window.innerWidth > 900) close(); });
   }
 
-  onReady(function () { initReveal(); initLang(); initMobileNav(); initParallax(); });
+  onReady(function () { initReveal(); initLang(); initMobileNav(); initParallax(); watchCookieBanner(); });
 })();
