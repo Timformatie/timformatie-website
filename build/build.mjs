@@ -233,6 +233,14 @@ function transform({ source, rendered, page }) {
   // --- add mobile navigation (cloned from desktop nav) before hover/link passes
   injectMobileNav(xdc, srcDoc);
 
+  // --- tag every NL/EN switch control so enhance.js can wire it consistently
+  // (markup varies across pages: langNL/langEN, langNLb/langENb, bare <a>/<span>)
+  for (const el of xdc.querySelectorAll('a, button, span')) {
+    const t = el.textContent.trim();
+    if (t === 'NL') el.setAttribute('data-setlang', 'nl');
+    else if (t === 'EN') el.setAttribute('data-setlang', 'en');
+  }
+
   // --- splice JS-generated fragments: elements empty in source but filled after render
   for (const el of xdc.querySelectorAll('[id]')) {
     if (el.innerHTML.trim() === '') {
