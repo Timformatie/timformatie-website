@@ -67,6 +67,7 @@
       off.style.background = g.inactive.bg; off.style.color = g.inactive.fg;
     });
     translateCookieBanner(lang);
+    if (doc.getElementById('ckStatus')) setCookieStatus(readConsent());
     try { localStorage.setItem(LANG_KEY, lang); } catch (e) {}
   }
 
@@ -187,5 +188,62 @@
     window.addEventListener('resize', function () { if (window.innerWidth > 900) close(); });
   }
 
-  onReady(function () { initReveal(); initLang(); initMobileNav(); initParallax(); watchCookieBanner(); });
+  // --- Cookie preference centre (Cookiebeleid page; ported from the dc-runtime) ---
+  var CONSENT_KEY = 'tim-cookie-consent';
+  function readConsent() {
+    try { var r = localStorage.getItem(CONSENT_KEY); return r ? JSON.parse(r) : null; } catch (e) { return null; }
+  }
+  function writeConsent(c) {
+    var d = { functional: true, preferences: !!c.preferences, statistics: !!c.statistics, marketing: !!c.marketing, ts: Date.now(), version: 1 };
+    try { localStorage.setItem(CONSENT_KEY, JSON.stringify(d)); } catch (e) {}
+    return d;
+  }
+  function setCookieChecks(c) {
+    var p = doc.getElementById('cbPreferences'); if (p) p.checked = !!(c && c.preferences);
+    var s = doc.getElementById('cbStatistics'); if (s) s.checked = !!(c && c.statistics);
+    var m = doc.getElementById('cbMarketing'); if (m) m.checked = !!(c && c.marketing);
+  }
+  function setCookieStatus(data) {
+    var el = doc.getElementById('ckStatus'); if (!el) return;
+    var en = currentLang === 'en';
+    if (!data) { el.textContent = en ? 'No choice saved yet' : 'Nog geen keuze opgeslagen'; return; }
+    var d = new Date(data.ts);
+    var dd = ('0' + d.getDate()).slice(-2), mm = ('0' + (d.getMonth() + 1)).slice(-2);
+    el.textContent = (en ? 'Saved on ' : 'Opgeslagen op ') + dd + '-' + mm + '-' + d.getFullYear();
+  }
+  function initCookiePrefs() {
+    if (!doc.getElementById('prefCenter')) return;
+    var fn = doc.getElementById('cbFunctional');
+    if (fn) { fn.checked = true; fn.disabled = true; fn.addEventListener('click', function (e) { e.preventDefault(); fn.checked = true; }); }
+    setCookieChecks(readConsent() || {});
+    setCookieStatus(readConsent());
+    // let the consent banner refresh this panel after accept/reject
+    window.__timPrefSync = function () { setCookieChecks(readConsent() || {}); setCookieStatus(readConsent()); };
+    var flashTimer;
+    function save(c, en, nl) {
+      var d = writeConsent(c);
+      setCookieChecks(d);
+      var el = doc.getElementById('ckStatus');
+      if (el) {
+        el.textContent = currentLang === 'en' ? en : nl;
+        clearTimeout(flashTimer);
+        flashTimer = setTimeout(function () { setCookieStatus(readConsent()); }, 2400);
+      }
+      if (window.TimCookies && window.TimCookies.removeBanner) window.TimCookies.removeBanner();
+    }
+    var acc = doc.getElementById('ckAcceptAll');
+    if (acc) acc.addEventListener('click', function () { save({ preferences: true, statistics: true, marketing: true }, 'All cookies accepted ✓', 'Alle cookies geaccepteerd ✓'); });
+    var rej = doc.getElementById('ckRejectAll');
+    if (rej) rej.addEventListener('click', function () { save({ preferences: false, statistics: false, marketing: false }, 'Functional cookies only ✓', 'Alleen functionele cookies ✓'); });
+    var sav = doc.getElementById('ckSave');
+    if (sav) sav.addEventListener('click', function () {
+      save({
+        preferences: !!(doc.getElementById('cbPreferences') || {}).checked,
+        statistics: !!(doc.getElementById('cbStatistics') || {}).checked,
+        marketing: !!(doc.getElementById('cbMarketing') || {}).checked
+      }, 'Preferences saved ✓', 'Voorkeuren opgeslagen ✓');
+    });
+  }
+
+  onReady(function () { initReveal(); initLang(); initMobileNav(); initParallax(); watchCookieBanner(); initCookiePrefs(); });
 })();
