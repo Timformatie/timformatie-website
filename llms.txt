@@ -1,0 +1,26 @@
+# Timformatie
+
+> Timformatie is een open-source dataplatform voor de zorg in Nederland. Wij bouwen open, soevereine dataplatformen, datastrategie en interactieve data- en AI-toepassingen — zonder vendor lock-in.
+
+Timformatie bouwt open source dataplatformen voor de zorg en het onderwijs in Nederland: soevereiniteit by design, geen vendor lock-in, en ondersteuning voor standaarden als FHIR en OMOP. Van data naar actie — dataplatformen, datastrategie en interactieve data- en AI-toepassingen.
+
+Ons open source dataplatform heet SRDP (https://srdphub.com/).
+
+## Pagina's
+- [Home](https://dev-website.timformatie.nl/)
+- [Expertise](https://dev-website.timformatie.nl/expertise.html)
+- [Projecten](https://dev-website.timformatie.nl/projecten.html)
+- [Over ons](https://dev-website.timformatie.nl/over-ons.html)
+- [Contact](https://dev-website.timformatie.nl/contact.html)
+- [Werken bij](https://dev-website.timformatie.nl/werken-bij.html)
+- [Helpdesk](https://dev-website.timformatie.nl/helpdesk.html)
+- [R-Shiny hosting](https://dev-website.timformatie.nl/r-shiny.html)
+- [Informatiebeveiliging](https://dev-website.timformatie.nl/informatiebeveiliging.html)
+- [Privacy](https://dev-website.timformatie.nl/privacy.html)
+- [Cookiebeleid](https://dev-website.timformatie.nl/cookiebeleid.html)
+
+## Contact
+- E-mail: info@timformatie.nl
+- Telefoon: +31 6 29472470
+- LinkedIn: https://www.linkedin.com/company/69914196/
+- Adres: Stationsplein 45, 3013 AK Rotterdam, NL

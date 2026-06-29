@@ -65,11 +65,16 @@
   function initMobileNav() {
     var btn = doc.getElementById('navToggle'), panel = doc.getElementById('mobileNav');
     if (!btn || !panel) return;
+    function close() { panel.setAttribute('hidden', ''); btn.setAttribute('aria-expanded', 'false'); }
+    function open() { panel.removeAttribute('hidden'); btn.setAttribute('aria-expanded', 'true'); }
     btn.addEventListener('click', function () {
-      var open = panel.hasAttribute('hidden') === false;
-      if (open) { panel.setAttribute('hidden', ''); btn.setAttribute('aria-expanded', 'false'); }
-      else { panel.removeAttribute('hidden'); btn.setAttribute('aria-expanded', 'true'); }
+      if (panel.hasAttribute('hidden')) open(); else close();
     });
+    // close after choosing a destination
+    panel.addEventListener('click', function (e) { if (e.target.closest('a')) close(); });
+    doc.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+    // never leave the panel open when resizing up to the desktop layout
+    window.addEventListener('resize', function () { if (window.innerWidth > 900) close(); });
   }
 
   onReady(function () { initReveal(); initLang(); initMobileNav(); });

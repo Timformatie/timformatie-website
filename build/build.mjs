@@ -16,7 +16,7 @@ import http from 'node:http';
 import { readFileSync, writeFileSync, mkdirSync, existsSync, statSync, createReadStream } from 'node:fs';
 import { join, dirname, extname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { SITE, PAGES, LINK_MAP } from './config.mjs';
+import { SITE, ORG, PAGES, LINK_MAP } from './config.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, '..');
@@ -85,6 +85,120 @@ async function renderSource(browser, src) {
   return { html, errs };
 }
 
+// Add a hamburger button + slide-down mobile menu, cloned from the page's own
+// desktop nav. Runs before the hover/link passes so the clones get processed too.
+function injectMobileNav(xdc, doc) {
+  const header = xdc.querySelector('header');
+  if (!header) return;
+  const desktopNav = header.querySelector('nav[data-nav]');
+  if (!desktopNav) return;
+  const rightDiv = desktopNav.parentElement?.lastElementChild || header;
+
+  const btn = doc.createElement('button');
+  btn.id = 'navToggle';
+  btn.type = 'button';
+  btn.className = 'dc-navtoggle';
+  btn.setAttribute('aria-label', 'Menu');
+  btn.setAttribute('aria-expanded', 'false');
+  btn.setAttribute('aria-controls', 'mobileNav');
+  btn.innerHTML = '<span></span><span></span><span></span>';
+  rightDiv.appendChild(btn);
+
+  const panel = doc.createElement('nav');
+  panel.id = 'mobileNav';
+  panel.className = 'dc-mobilenav';
+  panel.setAttribute('aria-label', 'Hoofdmenu');
+  panel.setAttribute('hidden', '');
+  const inner = doc.createElement('div');
+  inner.className = 'dc-mobilenav-inner';
+  for (const a of desktopNav.querySelectorAll('a')) {
+    const c = a.cloneNode(true);
+    c.removeAttribute('data-nav');
+    inner.appendChild(c);
+  }
+  const cta = header.querySelector('a[data-nav]');
+  if (cta) {
+    const c = cta.cloneNode(true);
+    c.removeAttribute('data-nav');
+    c.classList.add('dc-mobile-cta');
+    inner.appendChild(c);
+  }
+  panel.appendChild(inner);
+  header.insertAdjacentElement('afterend', panel);
+}
+
+// Build a single JSON-LD @graph per page: Organization + WebSite (stable brand
+// entities), the WebPage itself, and a BreadcrumbList on inner pages.
+function structuredData(page, title, desc) {
+  const ORG_ID = ORG.url + '#organization';
+  const SITE_ID = ORG.url + '#website';
+  const canonical = SITE.baseUrl + page.path;
+
+  const organization = {
+    '@type': 'Organization',
+    '@id': ORG_ID,
+    name: ORG.name,
+    url: ORG.url,
+    logo: ORG.logo,
+    description: ORG.description,
+    email: ORG.email,
+    telephone: ORG.telephone,
+    sameAs: ORG.sameAs,
+    areaServed: ORG.areaServed,
+    foundingLocation: ORG.foundingLocation,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: ORG.address.street,
+      postalCode: ORG.address.postalCode,
+      addressLocality: ORG.address.locality,
+      addressRegion: ORG.address.region,
+      addressCountry: ORG.address.country,
+    },
+    contactPoint: {
+      '@type': 'ContactPoint',
+      contactType: 'customer support',
+      email: ORG.email,
+      telephone: ORG.telephone,
+      areaServed: ORG.areaServed,
+      availableLanguage: ['nl', 'en'],
+    },
+  };
+
+  const website = {
+    '@type': 'WebSite',
+    '@id': SITE_ID,
+    url: ORG.url,
+    name: ORG.name,
+    inLanguage: 'nl-NL',
+    publisher: { '@id': ORG_ID },
+  };
+
+  const webpage = {
+    '@type': 'WebPage',
+    '@id': canonical + '#webpage',
+    url: canonical,
+    name: title,
+    description: desc,
+    inLanguage: 'nl-NL',
+    isPartOf: { '@id': SITE_ID },
+    about: { '@id': ORG_ID },
+  };
+
+  const graph = [organization, website, webpage];
+
+  if (page.path !== '/') {
+    graph.push({
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: ORG.url + '/' },
+        { '@type': 'ListItem', position: 2, name: page.label, item: canonical },
+      ],
+    });
+  }
+
+  return `<script type="application/ld+json">${JSON.stringify({ '@context': 'https://schema.org', '@graph': graph })}</script>`;
+}
+
 // ---- transform source -> clean static HTML ---------------------------------
 function transform({ source, rendered, page }) {
   const srcDom = new JSDOM(source);
@@ -104,10 +218,20 @@ function transform({ source, rendered, page }) {
       const tag = el.tagName.toLowerCase();
       if (tag === 'title') continue;
       if (tag === 'meta') continue; // description + viewport handled explicitly
+      // drop existing (inconsistent) JSON-LD; we emit a unified graph below
+      if (tag === 'script' && el.getAttribute('type') === 'application/ld+json') continue;
+      // drop Google Fonts (preconnect + stylesheet); fonts are self-hosted
+      if (tag === 'link') {
+        const href = el.getAttribute('href') || '';
+        if (href.includes('fonts.googleapis.com') || href.includes('fonts.gstatic.com')) continue;
+      }
       headExtras.push(rewriteLinks(el.outerHTML));
     }
     helmet.remove();
   }
+
+  // --- add mobile navigation (cloned from desktop nav) before hover/link passes
+  injectMobileNav(xdc, srcDoc);
 
   // --- splice JS-generated fragments: elements empty in source but filled after render
   for (const el of xdc.querySelectorAll('[id]')) {
@@ -166,13 +290,28 @@ function transform({ source, rendered, page }) {
     `<meta name="twitter:title" content="${attr(title)}">`,
     `<meta name="twitter:description" content="${attr(desc)}">`,
     `<meta name="twitter:image" content="${attr(SITE.baseUrl + SITE.ogImage)}">`,
-    // Icons (TODO: real favicon set)
-    `<link rel="icon" href="/assets/logo/logo-sage.png">`,
-    `<link rel="apple-touch-icon" href="/assets/logo/logo-sage.png">`,
+    // Structured data (Organization + WebSite + WebPage [+ BreadcrumbList])
+    structuredData(page, title, desc),
+    // Icons (generated by build/assets.mjs)
+    `<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">`,
+    `<link rel="icon" type="image/png" sizes="512x512" href="/assets/favicon.png">`,
+    `<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">`,
+    // self-hosted fonts (replaces Google Fonts CDN)
+    `<link rel="stylesheet" href="/assets/fonts/fonts.css">`,
     ...headExtras,
     hoverCss ? `<style>${hoverCss}</style>` : '',
-    // reveal gating + visible focus, applied only when JS is active
-    `<style>html.dc-js [data-reveal]{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}html.dc-js [data-reveal].dc-in{opacity:1;transform:none}a:focus-visible,button:focus-visible{outline:2px solid #5F8368;outline-offset:2px}</style>`,
+    // reveal gating + visible focus + mobile navigation
+    `<style>html.dc-js [data-reveal]{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}html.dc-js [data-reveal].dc-in{opacity:1;transform:none}a:focus-visible,button:focus-visible{outline:2px solid #5F8368;outline-offset:2px}` +
+      `.dc-navtoggle{display:none;flex-direction:column;justify-content:center;gap:5px;width:46px;height:42px;padding:0 11px;border:1px solid rgba(15,42,61,0.18);border-radius:11px;background:#FBF9F2;cursor:pointer}` +
+      `.dc-navtoggle span{display:block;height:2px;width:100%;background:#0F2A3D;border-radius:2px;transition:transform .22s ease,opacity .22s ease}` +
+      `.dc-navtoggle[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}` +
+      `.dc-navtoggle[aria-expanded="true"] span:nth-child(2){opacity:0}` +
+      `.dc-navtoggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}` +
+      `.dc-mobilenav{display:none;background:rgba(245,241,232,0.98);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid rgba(15,42,61,0.1);position:sticky;top:62px;z-index:55}` +
+      `.dc-mobilenav-inner{max-width:1280px;margin:0 auto;padding:10px 22px 22px;display:flex;flex-direction:column}` +
+      `.dc-mobilenav a{padding:14px 6px;font-size:17px;font-weight:600;color:#0F2A3D;text-decoration:none;border-bottom:1px solid rgba(15,42,61,0.07)}` +
+      `.dc-mobilenav a.dc-mobile-cta{margin-top:16px;border:none;background:#C8A04A;border-radius:999px;text-align:center;padding:15px 20px}` +
+      `@media(max-width:900px){.dc-navtoggle{display:flex}.dc-mobilenav:not([hidden]){display:block}}</style>`,
     `<script src="/assets/js/enhance.js" defer></script>`,
   ].filter(Boolean).join('\n');
 
@@ -188,6 +327,17 @@ ${bodyHtml}
 `;
 }
 
+// ---- 404 page (hand-written static, no <x-dc>) -----------------------------
+// Passthrough: drop Google Fonts, link self-hosted fonts, clean internal URLs.
+function build404() {
+  let html = readFileSync(join(SRC, '404.html'), 'utf8');
+  html = html.replace(/<link[^>]*fonts\.(googleapis|gstatic)\.com[^>]*>\s*/g, '');
+  html = html.replace('</head>', '<link rel="stylesheet" href="/assets/fonts/fonts.css">\n</head>');
+  html = rewriteLinks(html);
+  writeFileSync(join(OUT, '404.html'), html);
+  console.log('✓ 404.html (passthrough: fonts + clean URLs)');
+}
+
 // ---- sitemap + robots ------------------------------------------------------
 function writeRobotsAndSitemap() {
   const robots = SITE.noindex
@@ -198,6 +348,27 @@ function writeRobotsAndSitemap() {
   const urls = PAGES.map(p => `  <url><loc>${SITE.baseUrl}${p.path}</loc></url>`).join('\n');
   writeFileSync(join(OUT, 'sitemap.xml'),
     `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`);
+
+  // llms.txt — concise, machine-readable site summary for AI tools.
+  const pageList = PAGES.map(p => `- [${p.label}](${SITE.baseUrl}${p.path})`).join('\n');
+  const llms = `# Timformatie
+
+> ${ORG.description}
+
+Timformatie bouwt open source dataplatformen voor de zorg en het onderwijs in Nederland: soevereiniteit by design, geen vendor lock-in, en ondersteuning voor standaarden als FHIR en OMOP. Van data naar actie — dataplatformen, datastrategie en interactieve data- en AI-toepassingen.
+
+Ons open source dataplatform heet SRDP (https://srdphub.com/).
+
+## Pagina's
+${pageList}
+
+## Contact
+- E-mail: ${ORG.email}
+- Telefoon: +31 6 29472470
+- LinkedIn: ${ORG.sameAs[0]}
+- Adres: ${ORG.address.street}, ${ORG.address.postalCode} ${ORG.address.locality}, ${ORG.address.country}
+`;
+  writeFileSync(join(OUT, 'llms.txt'), llms);
 }
 
 // ---- main ------------------------------------------------------------------
@@ -222,8 +393,9 @@ async function main() {
     }
   }
 
+  build404();
   writeRobotsAndSitemap();
-  console.log(`\nWrote robots.txt + sitemap.xml`);
+  console.log(`\nWrote robots.txt + sitemap.xml + llms.txt`);
   console.log(`Done: ${ok}/${PAGES.length} pages.`);
   await browser.close();
   server.close();
