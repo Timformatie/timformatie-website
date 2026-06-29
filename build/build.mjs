@@ -220,6 +220,11 @@ function transform({ source, rendered, page }) {
       if (tag === 'meta') continue; // description + viewport handled explicitly
       // drop existing (inconsistent) JSON-LD; we emit a unified graph below
       if (tag === 'script' && el.getAttribute('type') === 'application/ld+json') continue;
+      // drop Google Fonts (preconnect + stylesheet); fonts are self-hosted
+      if (tag === 'link') {
+        const href = el.getAttribute('href') || '';
+        if (href.includes('fonts.googleapis.com') || href.includes('fonts.gstatic.com')) continue;
+      }
       headExtras.push(rewriteLinks(el.outerHTML));
     }
     helmet.remove();
@@ -291,6 +296,8 @@ function transform({ source, rendered, page }) {
     `<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">`,
     `<link rel="icon" type="image/png" sizes="512x512" href="/assets/favicon.png">`,
     `<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">`,
+    // self-hosted fonts (replaces Google Fonts CDN)
+    `<link rel="stylesheet" href="/assets/fonts/fonts.css">`,
     ...headExtras,
     hoverCss ? `<style>${hoverCss}</style>` : '',
     // reveal gating + visible focus + mobile navigation
@@ -318,6 +325,17 @@ ${bodyHtml}
 </body>
 </html>
 `;
+}
+
+// ---- 404 page (hand-written static, no <x-dc>) -----------------------------
+// Passthrough: drop Google Fonts, link self-hosted fonts, clean internal URLs.
+function build404() {
+  let html = readFileSync(join(SRC, '404.html'), 'utf8');
+  html = html.replace(/<link[^>]*fonts\.(googleapis|gstatic)\.com[^>]*>\s*/g, '');
+  html = html.replace('</head>', '<link rel="stylesheet" href="/assets/fonts/fonts.css">\n</head>');
+  html = rewriteLinks(html);
+  writeFileSync(join(OUT, '404.html'), html);
+  console.log('✓ 404.html (passthrough: fonts + clean URLs)');
 }
 
 // ---- sitemap + robots ------------------------------------------------------
@@ -375,6 +393,7 @@ async function main() {
     }
   }
 
+  build404();
   writeRobotsAndSitemap();
   console.log(`\nWrote robots.txt + sitemap.xml + llms.txt`);
   console.log(`Done: ${ok}/${PAGES.length} pages.`);
