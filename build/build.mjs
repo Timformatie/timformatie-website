@@ -270,6 +270,15 @@ function transform({ source, rendered, page }) {
     if (LINK_MAP[base]) a.setAttribute('href', LINK_MAP[base] + (frag ? '#' + frag : ''));
   }
 
+  // --- make Formspree's _next redirect absolute against the deploy domain
+  // (so a no-JS submission lands on our own thank-you page, not formspree.io).
+  // A root-relative placeholder in source becomes baseUrl + path at build time,
+  // so it tracks the dev/apex domain automatically.
+  for (const inp of xdc.querySelectorAll('input[name="_next"]')) {
+    const v = inp.getAttribute('value') || '';
+    if (v.startsWith('/')) inp.setAttribute('value', SITE.baseUrl + v);
+  }
+
   // --- remove the dc-runtime embedded script; body is the remaining x-dc content
   xdc.querySelector('script[data-dc-script]')?.remove();
   const bodyHtml = xdc.innerHTML;
@@ -355,12 +364,12 @@ function writeRobotsAndSitemap() {
     : `User-agent: *\nAllow: /\n\n# AI search crawlers welcome\nUser-agent: GPTBot\nAllow: /\nUser-agent: OAI-SearchBot\nAllow: /\nUser-agent: ClaudeBot\nAllow: /\nUser-agent: PerplexityBot\nAllow: /\nUser-agent: Google-Extended\nAllow: /\n\nSitemap: ${SITE.baseUrl}/sitemap.xml\n`;
   writeFileSync(join(OUT, 'robots.txt'), robots);
 
-  const urls = PAGES.map(p => `  <url><loc>${SITE.baseUrl}${p.path}</loc></url>`).join('\n');
+  const urls = PAGES.filter(p => !p.noSitemap).map(p => `  <url><loc>${SITE.baseUrl}${p.path}</loc></url>`).join('\n');
   writeFileSync(join(OUT, 'sitemap.xml'),
     `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`);
 
   // llms.txt — concise, machine-readable site summary for AI tools.
-  const pageList = PAGES.map(p => `- [${p.label}](${SITE.baseUrl}${p.path})`).join('\n');
+  const pageList = PAGES.filter(p => !p.noSitemap).map(p => `- [${p.label}](${SITE.baseUrl}${p.path})`).join('\n');
   const llms = `# Timformatie
 
 > ${ORG.description}

@@ -313,7 +313,9 @@
       }).then(function (r) {
         if (r.ok) {
           form.reset();
-          setHint(en ? 'Thanks! Your message has been sent.' : 'Bedankt! Je bericht is verstuurd.', '#5F8368');
+          // Land on our own styled thank-you page (same target as the no-JS _next).
+          var next = form.querySelector('[name="_next"]');
+          window.location.href = (next && next.value) ? next.value : '/bedankt.html';
           return;
         }
         return r.json().then(function (d) {

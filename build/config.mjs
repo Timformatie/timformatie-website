@@ -48,6 +48,7 @@ export const PAGES = [
   { src: 'Informatiebeveiliging.dc.html', out: 'informatiebeveiliging.html', path: '/informatiebeveiliging.html', label: 'Informatiebeveiliging' },
   { src: 'Privacy.dc.html',             out: 'privacy.html',               path: '/privacy.html',                label: 'Privacy' },
   { src: 'Cookiebeleid.dc.html',        out: 'cookiebeleid.html',          path: '/cookiebeleid.html',           label: 'Cookiebeleid' },
+  { src: 'Bedankt.dc.html',             out: 'bedankt.html',               path: '/bedankt.html',                label: 'Bedankt', noSitemap: true },
 ];
 
 // Map every internal .dc.html reference -> clean URL (root-absolute, works on
