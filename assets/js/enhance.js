@@ -188,6 +188,148 @@
     window.addEventListener('resize', function () { if (window.innerWidth > 900) close(); });
   }
 
+  // --- Team bio overlay (Over ons page; ported from the dc-runtime) ----------
+  // Each team photo is a <button data-open="id">; the matching detail lives in a
+  // <div data-panel="id"> inside #bioOverlay. With JS off the overlay stays hidden
+  // and the page is still fully readable.
+  function initBioOverlay() {
+    var ov = doc.getElementById('bioOverlay');
+    if (!ov) return;
+    var panels = [].slice.call(ov.querySelectorAll('[data-panel]'));
+
+    function open(id) {
+      panels.forEach(function (p) {
+        p.style.display = (p.getAttribute('data-panel') === id) ? 'block' : 'none';
+      });
+      ov.style.display = 'flex';
+      doc.body.style.overflow = 'hidden';
+      var btn = ov.querySelector('[data-close-btn]');
+      if (btn) btn.focus();
+    }
+    function close() {
+      ov.style.display = 'none';
+      doc.body.style.overflow = '';
+    }
+
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    [].forEach.call(doc.querySelectorAll('[data-open]'), function (b) {
+      b.addEventListener('click', function () { open(b.getAttribute('data-open')); });
+      var lift = b.querySelector('[data-lift]');
+      if (lift && !reduce) {
+        b.addEventListener('mouseenter', function () { lift.style.transform = 'translateY(-6px)'; });
+        b.addEventListener('mouseleave', function () { lift.style.transform = 'none'; });
+      }
+    });
+    [].forEach.call(ov.querySelectorAll('[data-close-bg], [data-close-btn]'), function (el) {
+      el.addEventListener('click', close);
+    });
+    doc.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && ov.style.display !== 'none') close();
+    });
+  }
+
+  // --- Booking modal (Google Calendar appointment scheduling) ----------------
+  // Triggers carry data-booking; clicking one opens a modal with the scheduling
+  // iframe. The iframe is built lazily on first open (kept off initial page load),
+  // and each trigger keeps its href (the contact page) as a no-JS fallback.
+  var BOOKING_URL = 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ1fKCz3finlqnfYeVXsOeHMue0UibEqnB7On-WBvVSHuTOwJ2bQj03-jE7ZNuTgPbD576-xDyPF?gv=true';
+  function initBooking() {
+    var triggers = [].slice.call(doc.querySelectorAll('[data-booking]'));
+    if (!triggers.length) return;
+    var overlay = null, frameLoaded = false;
+
+    function build() {
+      overlay = doc.createElement('div');
+      overlay.id = 'bookingOverlay';
+      overlay.setAttribute('role', 'dialog');
+      overlay.setAttribute('aria-modal', 'true');
+      overlay.setAttribute('aria-label', 'Plan een afspraak');
+      overlay.style.cssText = 'display:none;position:fixed;inset:0;z-index:120;align-items:center;justify-content:center;padding:24px;';
+      overlay.innerHTML =
+        '<div data-close-bg style="position:absolute;inset:0;background:rgba(15,42,61,0.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);"></div>' +
+        '<div style="position:relative;z-index:1;width:100%;max-width:760px;max-height:90vh;display:flex;flex-direction:column;overflow:hidden;background:#FBF9F2;border-radius:24px;box-shadow:0 24px 64px rgba(15,42,61,0.28);">' +
+          '<button type="button" data-close-btn aria-label="Sluiten" style="position:absolute;top:14px;right:14px;z-index:2;width:38px;height:38px;border:none;border-radius:50%;background:rgba(15,42,61,0.12);color:#0F2A3D;font-size:20px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;">×</button>' +
+          '<div data-frame-host style="flex:1;min-height:0;overflow:auto;-webkit-overflow-scrolling:touch;"></div>' +
+        '</div>';
+      doc.body.appendChild(overlay);
+      overlay.querySelector('[data-close-bg]').addEventListener('click', close);
+      overlay.querySelector('[data-close-btn]').addEventListener('click', close);
+    }
+    function open() {
+      if (!overlay) build();
+      if (!frameLoaded) {
+        var f = doc.createElement('iframe');
+        f.src = BOOKING_URL;
+        f.title = currentLang === 'en' ? 'Google Calendar appointment scheduling' : 'Google Agenda afsprakenplanner';
+        f.setAttribute('frameborder', '0');
+        f.style.cssText = 'border:0;display:block;width:100%;height:600px;';
+        overlay.querySelector('[data-frame-host]').appendChild(f);
+        frameLoaded = true;
+      }
+      overlay.style.display = 'flex';
+      doc.body.style.overflow = 'hidden';
+      overlay.querySelector('[data-close-btn]').focus();
+    }
+    function close() {
+      if (!overlay) return;
+      overlay.style.display = 'none';
+      doc.body.style.overflow = '';
+    }
+
+    triggers.forEach(function (t) {
+      t.addEventListener('click', function (e) { e.preventDefault(); open(); });
+    });
+    doc.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && overlay && overlay.style.display !== 'none') close();
+    });
+  }
+
+  // --- Contact form (Contact page) -------------------------------------------
+  // Submits to Formspree over AJAX so the visitor stays on the page. The form's
+  // action attribute is the single source of truth for the endpoint. Status is
+  // shown in #cfHint, language-aware. Without JS the native POST still works
+  // (Formspree shows its own confirmation page).
+  function initContactForm() {
+    var form = doc.getElementById('contactForm');
+    if (!form) return;
+    var hint = doc.getElementById('cfHint');
+    var btn = form.querySelector('button[type="submit"]');
+    var setHint = function (msg, color) {
+      if (!hint) return;
+      hint.textContent = msg;
+      hint.style.color = color || 'rgba(15,42,61,0.5)';
+    };
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var en = currentLang === 'en';
+      var fail = en ? 'Something went wrong. Please email info@timformatie.nl.'
+                    : 'Er ging iets mis. Mail ons gerust op info@timformatie.nl.';
+      if (btn) btn.disabled = true;
+      setHint(en ? 'Sending…' : 'Versturen…');
+      fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      }).then(function (r) {
+        if (r.ok) {
+          form.reset();
+          setHint(en ? 'Thanks! Your message has been sent.' : 'Bedankt! Je bericht is verstuurd.', '#5F8368');
+          return;
+        }
+        return r.json().then(function (d) {
+          var msg = (d && d.errors && d.errors.length)
+            ? d.errors.map(function (x) { return x.message; }).join(', ')
+            : fail;
+          setHint(msg, '#C0392B');
+        });
+      }).catch(function () {
+        setHint(fail, '#C0392B');
+      }).then(function () {
+        if (btn) btn.disabled = false;
+      });
+    });
+  }
+
   // --- Cookie preference centre (Cookiebeleid page; ported from the dc-runtime) ---
   var CONSENT_KEY = 'tim-cookie-consent';
   function readConsent() {
@@ -245,5 +387,5 @@
     });
   }
 
-  onReady(function () { initReveal(); initLang(); initMobileNav(); initParallax(); watchCookieBanner(); initCookiePrefs(); });
+  onReady(function () { initReveal(); initLang(); initMobileNav(); initParallax(); watchCookieBanner(); initCookiePrefs(); initBioOverlay(); initBooking(); initContactForm(); });
 })();
