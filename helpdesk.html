@@ -97,7 +97,7 @@
     <div style="max-width:860px;">
       <div data-en="Helpdesk" style="font-family:'JetBrains Mono',monospace;font-size:15px;letter-spacing:0.16em;text-transform:uppercase;color:#5F8368;font-weight:700;margin-bottom:22px;">Helpdesk</div>
       <h1 data-h1="" data-en-html="Submit a <span style=&quot;background:#5EE3B1;color:#0F2A3D;padding:0.02em 0.14em;box-decoration-break:clone;-webkit-box-decoration-break:clone;&quot;>request</span>." style="font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(42px,5.4vw,82px);line-height:0.98;letter-spacing:-0.02em;color:#0F2A3D;margin:0 0 22px;">Een verzoek <span style="background:#5EE3B1;color:#0F2A3D;padding:0.02em 0.14em;box-decoration-break:clone;-webkit-box-decoration-break:clone;">indienen</span>.</h1>
-      <p data-en-html="Are you working with us on an ongoing project and is something broken, can't you access something, or would you like something new? Fill in the form. Your email app opens with a neatly formatted ticket, ready to send to <strong>support@timformatie.nl</strong>." style="font-size:clamp(17px,1.4vw,21px);line-height:1.6;color:rgba(15,42,61,0.72);max-width:680px;margin:0;">Werk je met ons aan een lopend project en is er iets stuk, kun je ergens niet bij, of wil je iets nieuws? Vul het formulier in. Je e-mailprogramma opent met een net opgemaakt ticket, klaar om naar <strong>support@timformatie.nl</strong> te sturen.</p>
+      <p data-en-html="Are you working with us on an ongoing project and is something broken, can't you access something, or would you like something new? Fill in the form and we'll receive your ticket straight at <strong>support@timformatie.nl</strong>." style="font-size:clamp(17px,1.4vw,21px);line-height:1.6;color:rgba(15,42,61,0.72);max-width:680px;margin:0;">Werk je met ons aan een lopend project en is er iets stuk, kun je ergens niet bij, of wil je iets nieuws? Vul het formulier in en je ticket komt direct bij ons binnen op <strong>support@timformatie.nl</strong>.</p>
     </div>
   </div>
 </section>
@@ -105,18 +105,18 @@
 <section data-screen-label="Helpdesk body" data-sec="" style="padding:28px 40px 80px;">
   <div data-split="" style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1.45fr 0.95fr;gap:48px;align-items:start;">
 
-    <form id="ticketForm" style="background:#fff;border:1px solid rgba(15,42,61,0.1);border-radius:24px;padding:clamp(26px,3.4vw,44px);box-shadow:0 8px 24px rgba(15,42,61,0.06);">
+    <form id="ticketForm" action="https://formspree.io/p/3035415180449152487/f/helpdeskForm" method="POST" style="background:#fff;border:1px solid rgba(15,42,61,0.1);border-radius:24px;padding:clamp(26px,3.4vw,44px);box-shadow:0 8px 24px rgba(15,42,61,0.06);">
       <h2 data-en="Ticket form" style="font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(22px,2.4vw,30px);letter-spacing:-0.02em;color:#0F2A3D;margin:0 0 6px;">Ticketformulier</h2>
       <p data-en-html="Fields marked with <span style=&quot;color:#EE6A5A;&quot;>*</span> are required." style="font-size:15.5px;line-height:1.5;color:rgba(15,42,61,0.6);margin:0 0 28px;">Velden met <span style="color:#EE6A5A;">*</span> zijn verplicht.</p>
 
       <div data-split="" style="display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:20px;">
         <label style="display:block;">
           <span data-en-html="Organisation name <span style=&quot;color:#EE6A5A;&quot;>*</span>" style="display:block;font-size:13.5px;font-weight:600;color:#0F2A3D;margin-bottom:7px;">Naam organisatie <span style="color:#EE6A5A;">*</span></span>
-          <input id="tfOrg" type="text" required="" placeholder="Bijv. Voorbeeldzorg" style="width:100%;padding:13px 15px;border:1px solid rgba(15,42,61,0.18);border-radius:11px;font-size:15.5px;background:#FBF9F2;color:#0F2A3D;transition:border-color .2s,box-shadow .2s;">
+          <input id="tfOrg" name="organisatie" type="text" required="" placeholder="Bijv. Voorbeeldzorg" style="width:100%;padding:13px 15px;border:1px solid rgba(15,42,61,0.18);border-radius:11px;font-size:15.5px;background:#FBF9F2;color:#0F2A3D;transition:border-color .2s,box-shadow .2s;">
         </label>
         <label style="display:block;">
           <span data-en-html="Project name <span style=&quot;color:#EE6A5A;&quot;>*</span>" style="display:block;font-size:13.5px;font-weight:600;color:#0F2A3D;margin-bottom:7px;">Naam project <span style="color:#EE6A5A;">*</span></span>
-          <input id="tfProject" type="text" required="" placeholder="Bijv. Dashboard leefstijl" style="width:100%;padding:13px 15px;border:1px solid rgba(15,42,61,0.18);border-radius:11px;font-size:15.5px;background:#FBF9F2;color:#0F2A3D;transition:border-color .2s,box-shadow .2s;">
+          <input id="tfProject" name="project" type="text" required="" placeholder="Bijv. Dashboard leefstijl" style="width:100%;padding:13px 15px;border:1px solid rgba(15,42,61,0.18);border-radius:11px;font-size:15.5px;background:#FBF9F2;color:#0F2A3D;transition:border-color .2s,box-shadow .2s;">
         </label>
       </div>
 
@@ -150,34 +150,37 @@
 
       <label style="display:block;margin-bottom:20px;">
         <span data-en-html="Current situation <span style=&quot;color:#EE6A5A;&quot;>*</span>" style="display:block;font-size:13.5px;font-weight:600;color:#0F2A3D;margin-bottom:7px;">Huidige situatie <span style="color:#EE6A5A;">*</span></span>
-        <textarea id="tfCurrent" rows="4" required="" placeholder="Beschrijf wat er nu gebeurt of de huidige status. Denk ook aan browser, apparaat en of het om de test- of productieomgeving gaat." style="width:100%;padding:13px 15px;border:1px solid rgba(15,42,61,0.18);border-radius:11px;font-size:15.5px;background:#FBF9F2;color:#0F2A3D;resize:vertical;transition:border-color .2s,box-shadow .2s;"></textarea>
+        <textarea id="tfCurrent" name="huidige_situatie" rows="4" required="" placeholder="Beschrijf wat er nu gebeurt of de huidige status. Denk ook aan browser, apparaat en of het om de test- of productieomgeving gaat." style="width:100%;padding:13px 15px;border:1px solid rgba(15,42,61,0.18);border-radius:11px;font-size:15.5px;background:#FBF9F2;color:#0F2A3D;resize:vertical;transition:border-color .2s,box-shadow .2s;"></textarea>
       </label>
 
       <label style="display:block;margin-bottom:20px;">
         <span data-en-html="Desired situation <span style=&quot;color:#EE6A5A;&quot;>*</span>" style="display:block;font-size:13.5px;font-weight:600;color:#0F2A3D;margin-bottom:7px;">Gewenste situatie <span style="color:#EE6A5A;">*</span></span>
-        <textarea id="tfDesired" rows="3" required="" placeholder="Beschrijf wat het resultaat moet zijn na de aanpassing." style="width:100%;padding:13px 15px;border:1px solid rgba(15,42,61,0.18);border-radius:11px;font-size:15.5px;background:#FBF9F2;color:#0F2A3D;resize:vertical;transition:border-color .2s,box-shadow .2s;"></textarea>
+        <textarea id="tfDesired" name="gewenste_situatie" rows="3" required="" placeholder="Beschrijf wat het resultaat moet zijn na de aanpassing." style="width:100%;padding:13px 15px;border:1px solid rgba(15,42,61,0.18);border-radius:11px;font-size:15.5px;background:#FBF9F2;color:#0F2A3D;resize:vertical;transition:border-color .2s,box-shadow .2s;"></textarea>
       </label>
 
       <label style="display:block;margin-bottom:20px;">
         <span data-en-html="Reproducing the bug <span style=&quot;font-weight:400;color:rgba(15,42,61,0.5);&quot;>(bugs only)</span>" style="display:block;font-size:13.5px;font-weight:600;color:#0F2A3D;margin-bottom:7px;">Bug reproduceren <span style="font-weight:400;color:rgba(15,42,61,0.5);">(alleen bij bugs)</span></span>
-        <textarea id="tfRepro" rows="3" placeholder="Geef duidelijk de stappen aan om het probleem te reproduceren." style="width:100%;padding:13px 15px;border:1px solid rgba(15,42,61,0.18);border-radius:11px;font-size:15.5px;background:#FBF9F2;color:#0F2A3D;resize:vertical;transition:border-color .2s,box-shadow .2s;"></textarea>
+        <textarea id="tfRepro" name="bug_reproduceren" rows="3" placeholder="Geef duidelijk de stappen aan om het probleem te reproduceren." style="width:100%;padding:13px 15px;border:1px solid rgba(15,42,61,0.18);border-radius:11px;font-size:15.5px;background:#FBF9F2;color:#0F2A3D;resize:vertical;transition:border-color .2s,box-shadow .2s;"></textarea>
       </label>
 
       <label style="display:block;margin-bottom:20px;">
         <span data-en-html="Alignment call <span style=&quot;color:#EE6A5A;&quot;>*</span>" style="display:block;font-size:13.5px;font-weight:600;color:#0F2A3D;margin-bottom:7px;">Afstemmingscall <span style="color:#EE6A5A;">*</span></span>
-        <textarea id="tfCall" rows="2" required="" placeholder="Is er een afstemmingscall nodig voordat dit ticket opgepakt kan worden? Zo ja, wie sluiten vanuit jullie kant aan?" style="width:100%;padding:13px 15px;border:1px solid rgba(15,42,61,0.18);border-radius:11px;font-size:15.5px;background:#FBF9F2;color:#0F2A3D;resize:vertical;transition:border-color .2s,box-shadow .2s;"></textarea>
+        <textarea id="tfCall" name="afstemmingscall" rows="2" required="" placeholder="Is er een afstemmingscall nodig voordat dit ticket opgepakt kan worden? Zo ja, wie sluiten vanuit jullie kant aan?" style="width:100%;padding:13px 15px;border:1px solid rgba(15,42,61,0.18);border-radius:11px;font-size:15.5px;background:#FBF9F2;color:#0F2A3D;resize:vertical;transition:border-color .2s,box-shadow .2s;"></textarea>
       </label>
 
       <label style="display:block;margin-bottom:26px;">
         <span data-en-html="Your email address <span style=&quot;color:#EE6A5A;&quot;>*</span>" style="display:block;font-size:13.5px;font-weight:600;color:#0F2A3D;margin-bottom:7px;">Jouw e-mailadres <span style="color:#EE6A5A;">*</span></span>
-        <input id="tfEmail" type="email" required="" placeholder="naam@organisatie.nl" style="width:100%;padding:13px 15px;border:1px solid rgba(15,42,61,0.18);border-radius:11px;font-size:15.5px;background:#FBF9F2;color:#0F2A3D;transition:border-color .2s,box-shadow .2s;">
+        <input id="tfEmail" name="email" type="email" required="" placeholder="naam@organisatie.nl" style="width:100%;padding:13px 15px;border:1px solid rgba(15,42,61,0.18);border-radius:11px;font-size:15.5px;background:#FBF9F2;color:#0F2A3D;transition:border-color .2s,box-shadow .2s;">
       </label>
 
+      <input type="hidden" name="_subject" value="Nieuw helpdesk ticket via timformatie.nl">
+      <input type="hidden" name="_next" value="https://dev-website.timformatie.nl/bedankt.html">
+      <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none !important;">
       <div style="display:flex;flex-wrap:wrap;gap:12px;">
         <button type="submit" data-en="Send to support →" style="display:inline-flex;align-items:center;justify-content:center;gap:9px;background:#EE6A5A;color:#FBF9F2;font-weight:700;font-size:16px;padding:15px 26px;border:none;border-radius:10px;cursor:pointer;box-shadow:0 8px 24px rgba(238,106,90,0.3);transition:background .2s;" class="dh2">Verstuur naar support →</button>
         <button type="button" id="tfCopy" data-en="Copy as email" style="display:inline-flex;align-items:center;justify-content:center;gap:9px;background:transparent;color:#0F2A3D;font-weight:600;font-size:16px;padding:15px 24px;border:1px solid rgba(15,42,61,0.22);border-radius:10px;cursor:pointer;transition:border-color .2s,background .2s;" class="dh3">Kopieer als e-mail</button>
       </div>
-      <p id="tfHint" data-en="Opens your email app with the completed ticket. Sending does not happen automatically." style="font-size:13px;color:rgba(15,42,61,0.5);margin:16px 0 0;">Opent je mailprogramma met het ingevulde ticket. Verzenden gebeurt niet automatisch.</p>
+      <p id="tfHint" data-en="We send your ticket straight to support and usually reply within one working day." style="font-size:13px;color:rgba(15,42,61,0.5);margin:16px 0 0;">We sturen je ticket direct naar support en reageren meestal binnen één werkdag.</p>
     </form>
 
     <aside style="display:flex;flex-direction:column;gap:16px;position:sticky;top:96px;">

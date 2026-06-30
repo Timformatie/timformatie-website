@@ -339,6 +339,104 @@
     });
   }
 
+  function fallbackCopy(text) {
+    try {
+      var ta = doc.createElement('textarea');
+      ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+      doc.body.appendChild(ta); ta.select();
+      var ok = doc.execCommand('copy');
+      doc.body.removeChild(ta);
+      return ok;
+    } catch (e) { return false; }
+  }
+
+  // Helpdesk ticket form: same Formspree AJAX submit as the contact form, plus a
+  // "copy as email" fallback that puts a formatted ticket on the clipboard.
+  function initHelpdeskForm() {
+    var form = doc.getElementById('ticketForm');
+    if (!form) return;
+    var hint = doc.getElementById('tfHint');
+    var btn = form.querySelector('button[type="submit"]');
+    var setHint = function (msg, color) {
+      if (!hint) return;
+      hint.textContent = msg;
+      hint.style.color = color || 'rgba(15,42,61,0.5)';
+    };
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var en = currentLang === 'en';
+      var fail = en ? 'Something went wrong. Please email support@timformatie.nl.'
+                    : 'Er ging iets mis. Mail je ticket gerust naar support@timformatie.nl.';
+      if (btn) btn.disabled = true;
+      setHint(en ? 'Sending…' : 'Versturen…');
+      fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      }).then(function (r) {
+        if (r.ok) {
+          form.reset();
+          var next = form.querySelector('[name="_next"]');
+          window.location.href = (next && next.value) ? next.value : '/bedankt.html';
+          return;
+        }
+        return r.json().then(function (d) {
+          var msg = (d && d.errors && d.errors.length)
+            ? d.errors.map(function (x) { return x.message; }).join(', ')
+            : fail;
+          setHint(msg, '#C0392B');
+        });
+      }).catch(function () {
+        setHint(fail, '#C0392B');
+      }).then(function () {
+        if (btn) btn.disabled = false;
+      });
+    });
+
+    var copyBtn = doc.getElementById('tfCopy');
+    if (!copyBtn) return;
+    copyBtn.addEventListener('click', function () {
+      var v = function (id) { var el = doc.getElementById(id); return ((el && el.value) || '').trim(); };
+      var checked = function (name) { var el = form.querySelector('input[name="' + name + '"]:checked'); return el ? el.value : ''; };
+      var subject = 'Helpdesk | ' + (checked('type') || 'Verzoek') + ' | ' + (v('tfOrg') || 'Organisatie') + ' – ' + (v('tfProject') || 'Project');
+      var lines = [
+        'Aan: support@timformatie.nl',
+        'Onderwerp: ' + subject,
+        '',
+        'Organisatie: ' + v('tfOrg'),
+        'Project: ' + v('tfProject'),
+        'Type verzoek: ' + checked('type'),
+        'Prioriteit: ' + checked('prio'),
+        'Impact: ' + checked('impact'),
+        '',
+        'Huidige situatie:', v('tfCurrent'),
+        '',
+        'Gewenste situatie:', v('tfDesired')
+      ];
+      if (v('tfRepro')) { lines.push('', 'Bug reproduceren (stappen):', v('tfRepro')); }
+      lines.push('', 'Afstemmingscall nodig / wie sluiten aan:', v('tfCall'));
+      lines.push('', 'Contact-e-mail: ' + v('tfEmail'));
+      var text = lines.join('\n');
+      var en = currentLang === 'en';
+      var label = copyBtn.getAttribute('data-label') || copyBtn.textContent;
+      copyBtn.setAttribute('data-label', label);
+      var done = function (ok) {
+        copyBtn.textContent = ok ? (en ? 'Copied ✓' : 'Gekopieerd ✓') : (en ? 'Copy failed' : 'Kopiëren mislukt');
+        setHint(ok
+          ? (en ? 'The ticket is on your clipboard — paste it into a new email to support@timformatie.nl.'
+                : 'Het ticket staat op je klembord, plak het in een nieuwe mail naar support@timformatie.nl.')
+          : (en ? 'Copying failed — use the "Send to support" button instead.'
+                : 'Kopiëren lukte niet, gebruik de knop “Verstuur naar support”.'));
+        setTimeout(function () { copyBtn.textContent = label; }, 2200);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function () { done(true); }, function () { done(fallbackCopy(text)); });
+      } else {
+        done(fallbackCopy(text));
+      }
+    });
+  }
+
   // --- Cookie preference centre (Cookiebeleid page; ported from the dc-runtime) ---
   var CONSENT_KEY = 'tim-cookie-consent';
   function readConsent() {
@@ -396,5 +494,5 @@
     });
   }
 
-  onReady(function () { initReveal(); initLang(); initMobileNav(); initParallax(); watchCookieBanner(); initCookiePrefs(); initBioOverlay(); initBooking(); initContactForm(); });
+  onReady(function () { initReveal(); initLang(); initMobileNav(); initParallax(); watchCookieBanner(); initCookiePrefs(); initBioOverlay(); initBooking(); initContactForm(); initHelpdeskForm(); });
 })();
