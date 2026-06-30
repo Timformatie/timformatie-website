@@ -59,12 +59,19 @@
     [].forEach.call(doc.querySelectorAll('[data-setlang]'), function (c) {
       c.setAttribute('aria-pressed', String(c.getAttribute('data-setlang') === lang));
     });
-    // move the highlighted ("active") look onto the chosen language control
+    // move the highlighted ("active") look onto the chosen language control.
+    // The active control's colours are set with !important so they survive a
+    // sticky :hover rule (e.g. .dh0:hover{color:... !important}) that lingers
+    // after a tap on mobile and would otherwise hide the label until you tap
+    // elsewhere. The inactive control keeps normal priority so its hover still
+    // works.
     langGroups.forEach(function (g) {
       var on = lang === 'en' ? g.en : g.nl;
       var off = lang === 'en' ? g.nl : g.en;
-      on.style.background = g.active.bg; on.style.color = g.active.fg;
-      off.style.background = g.inactive.bg; off.style.color = g.inactive.fg;
+      on.style.setProperty('background', g.active.bg, 'important');
+      on.style.setProperty('color', g.active.fg, 'important');
+      off.style.setProperty('background', g.inactive.bg, '');
+      off.style.setProperty('color', g.inactive.fg, '');
     });
     translateCookieBanner(lang);
     if (doc.getElementById('ckStatus')) setCookieStatus(readConsent());
