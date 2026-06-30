@@ -1,0 +1,26 @@
+name: Deploy Formspree forms
+
+# Pushes formspree.json to your Formspree project via the Formspree CLI.
+#
+# Setup (one-time): add a repository secret named FORMSPREE_DEPLOY_KEY under
+#   Settings → Secrets and variables → Actions → New repository secret.
+# GitHub encrypts the secret; it is never printed in logs nor stored in the repo.
+#
+# Runs automatically when formspree.json changes, or on demand via "Run workflow".
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - formspree.json
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Deploy forms
+        uses: formspree/cli-action@main
+        with:
+          deployKey: ${{ secrets.FORMSPREE_DEPLOY_KEY }}

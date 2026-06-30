@@ -1,0 +1,15 @@
+{
+  "forms": {
+    "contactForm": {
+      "name": "Timformatie contactformulier",
+      "actions": [
+        { "type": "email", "to": "info@timformatie.nl" }
+      ],
+      "fields": {
+        "name": { "type": "text", "required": true },
+        "email": { "type": "email", "required": true },
+        "message": { "required": true }
+      }
+    }
+  }
+}

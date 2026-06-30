@@ -3,3 +3,8 @@
 
 # Build tooling
 build/node_modules/
+
+# Secrets — never commit the Formspree deploy key (or any env file)
+.env
+.env.*
+!.env.example

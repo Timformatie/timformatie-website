@@ -280,6 +280,8 @@ function transform({ source, rendered, page }) {
   const head = [
     '<meta charset="utf-8">',
     '<meta name="viewport" content="width=device-width, initial-scale=1">',
+    // Light-only design: opt out of browser/OS auto dark-mode (esp. Chrome on Android).
+    '<meta name="color-scheme" content="light">',
     `<title>${esc(title)}</title>`,
     `<meta name="description" content="${attr(desc)}">`,
     SITE.noindex ? '<meta name="robots" content="noindex, nofollow">' : '<meta name="robots" content="index, follow">',
@@ -340,7 +342,7 @@ ${bodyHtml}
 function build404() {
   let html = readFileSync(join(SRC, '404.html'), 'utf8');
   html = html.replace(/<link[^>]*fonts\.(googleapis|gstatic)\.com[^>]*>\s*/g, '');
-  html = html.replace('</head>', '<link rel="stylesheet" href="/assets/fonts/fonts.css">\n</head>');
+  html = html.replace('</head>', '<meta name="color-scheme" content="light">\n<link rel="stylesheet" href="/assets/fonts/fonts.css">\n</head>');
   html = rewriteLinks(html);
   writeFileSync(join(OUT, '404.html'), html);
   console.log('✓ 404.html (passthrough: fonts + clean URLs)');
