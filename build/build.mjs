@@ -237,8 +237,13 @@ function transform({ source, rendered, page }) {
   // (markup varies across pages: langNL/langEN, langNLb/langENb, bare <a>/<span>)
   for (const el of xdc.querySelectorAll('a, button, span')) {
     const t = el.textContent.trim();
-    if (t === 'NL') el.setAttribute('data-setlang', 'nl');
-    else if (t === 'EN') el.setAttribute('data-setlang', 'en');
+    if (t !== 'NL' && t !== 'EN') continue;
+    el.setAttribute('data-setlang', t === 'NL' ? 'nl' : 'en');
+    // The homepage toggle uses <span>/<a> (text-selectable); on mobile a tap can
+    // select the label and the selection highlight then hides it until you tap
+    // elsewhere. Make every control non-selectable from first paint (no JS needed).
+    const sel = '-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;-webkit-tap-highlight-color:transparent';
+    el.setAttribute('style', `${el.getAttribute('style') || ''}${el.getAttribute('style') ? ';' : ''}${sel}`);
   }
 
   // --- splice JS-generated fragments: elements empty in source but filled after render

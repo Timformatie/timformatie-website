@@ -82,6 +82,7 @@
       // then hides it. Make every control behave like a button: not selectable.
       c.style.userSelect = 'none';
       c.style.webkitUserSelect = 'none';
+      c.style.webkitTouchCallout = 'none';
       c.style.webkitTapHighlightColor = 'transparent';
       c.addEventListener('click', function (e) { e.preventDefault(); applyLang(c.getAttribute('data-setlang')); });
       var p = c.parentNode, g = null, i;
