@@ -10,6 +10,24 @@
         "email": { "type": "email", "required": true },
         "message": { "required": true }
       }
+    },
+    "helpdeskForm": {
+      "name": "Timformatie helpdesk ticket",
+      "actions": [
+        { "type": "email", "to": "support@timformatie.nl" }
+      ],
+      "fields": {
+        "organisatie": { "type": "text", "required": true },
+        "project": { "type": "text", "required": true },
+        "type": { "required": true },
+        "prio": { "required": true },
+        "impact": { "required": true },
+        "huidige_situatie": { "required": true },
+        "gewenste_situatie": { "required": true },
+        "bug_reproduceren": { "required": false },
+        "afstemmingscall": { "required": true },
+        "email": { "type": "email", "required": true }
+      }
     }
   }
 }
