@@ -7,17 +7,17 @@ Timformatie bouwt open source dataplatformen voor de zorg en het onderwijs in Ne
 Ons open source dataplatform heet SRDP (https://srdphub.com/).
 
 ## Pagina's
-- [Home](https://dev-website.timformatie.nl/)
-- [Expertise](https://dev-website.timformatie.nl/expertise.html)
-- [Projecten](https://dev-website.timformatie.nl/projecten.html)
-- [Over ons](https://dev-website.timformatie.nl/over-ons.html)
-- [Contact](https://dev-website.timformatie.nl/contact.html)
-- [Werken bij](https://dev-website.timformatie.nl/werken-bij.html)
-- [Helpdesk](https://dev-website.timformatie.nl/helpdesk.html)
-- [R-Shiny hosting](https://dev-website.timformatie.nl/r-shiny.html)
-- [Informatiebeveiliging](https://dev-website.timformatie.nl/informatiebeveiliging.html)
-- [Privacy](https://dev-website.timformatie.nl/privacy.html)
-- [Cookiebeleid](https://dev-website.timformatie.nl/cookiebeleid.html)
+- [Home](https://timformatie.nl/)
+- [Expertise](https://timformatie.nl/expertise.html)
+- [Projecten](https://timformatie.nl/projecten.html)
+- [Over ons](https://timformatie.nl/over-ons.html)
+- [Contact](https://timformatie.nl/contact.html)
+- [Werken bij](https://timformatie.nl/werken-bij.html)
+- [Helpdesk](https://timformatie.nl/helpdesk.html)
+- [R-Shiny hosting](https://timformatie.nl/r-shiny.html)
+- [Informatiebeveiliging](https://timformatie.nl/informatiebeveiliging.html)
+- [Privacy](https://timformatie.nl/privacy.html)
+- [Cookiebeleid](https://timformatie.nl/cookiebeleid.html)
 
 ## Contact
 - E-mail: info@timformatie.nl

@@ -6,8 +6,8 @@ export const SITE = {
   // Production target is timformatie.nl; during the dev phase we deploy to the
   // dev subdomain and keep the site out of the index. Flip both at go-live:
   //   baseUrl -> 'https://timformatie.nl'  and  noindex -> false
-  baseUrl: 'https://dev-website.timformatie.nl',
-  noindex: true,
+  baseUrl: 'https://timformatie.nl',
+  noindex: false,
   lang: 'nl',
   siteName: 'Timformatie',
   locale: 'nl_NL',
