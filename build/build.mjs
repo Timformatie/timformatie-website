@@ -335,6 +335,15 @@ function transform({ source, rendered, page }) {
       `.dc-mobilenav-inner{max-width:1280px;margin:0 auto;padding:10px 22px 22px;display:flex;flex-direction:column}` +
       `.dc-mobilenav a{padding:14px 6px;font-size:17px;font-weight:600;color:#0F2A3D;text-decoration:none;border-bottom:1px solid rgba(15,42,61,0.07)}` +
       `.dc-mobilenav a.dc-mobile-cta{margin-top:16px;border:none;background:#C8A04A;border-radius:999px;text-align:center;padding:15px 20px}` +
+      // desktop "Over ons" dropdown (CSS-only hover/focus; the nested link is cloned flat into the mobile menu)
+      `.dc-navgroup{position:relative;display:inline-flex;align-items:center}` +
+      `.dc-navgroup>a::after{content:"";display:inline-block;width:6px;height:6px;margin-left:7px;border-right:1.6px solid currentColor;border-bottom:1.6px solid currentColor;transform:translateY(-2px) rotate(45deg);opacity:0.5;transition:transform .2s ease,opacity .2s ease}` +
+      `.dc-navgroup:hover>a::after,.dc-navgroup:focus-within>a::after{transform:translateY(0) rotate(225deg);opacity:0.9}` +
+      `.dc-submenu{position:absolute;top:100%;left:-14px;margin-top:12px;min-width:190px;background:#FBF9F2;border:1px solid rgba(15,42,61,0.1);border-radius:14px;box-shadow:0 16px 40px rgba(15,42,61,0.14);padding:8px;opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity .18s ease,transform .18s ease,visibility .18s ease;z-index:60}` +
+      `.dc-submenu::before{content:"";position:absolute;bottom:100%;left:0;right:0;height:14px}` +
+      `.dc-navgroup:hover .dc-submenu,.dc-navgroup:focus-within .dc-submenu{opacity:1;visibility:visible;transform:translateY(0)}` +
+      `.dc-submenu a{display:block;padding:10px 13px;border-radius:9px;font-size:14.5px;font-weight:600;color:rgba(15,42,61,0.68);text-decoration:none;white-space:nowrap}` +
+      `.dc-submenu a:hover{background:rgba(94,227,177,0.16);color:#0F2A3D}` +
       `@media(max-width:900px){.dc-navtoggle{display:flex}.dc-mobilenav:not([hidden]){display:block}}</style>`,
     `<script src="/assets/js/enhance.js" defer></script>`,
   ].filter(Boolean).join('\n');
