@@ -1,3 +1,16 @@
-# Dev deployment — keep out of search indexes.
 User-agent: *
-Disallow: /
+Allow: /
+
+# AI search crawlers welcome
+User-agent: GPTBot
+Allow: /
+User-agent: OAI-SearchBot
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://timformatie.nl/sitemap.xml
