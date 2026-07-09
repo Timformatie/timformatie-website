@@ -54,3 +54,73 @@ export const PAGES = [
 // Map every internal .dc.html reference -> clean URL (root-absolute, works on
 // both the dev subdomain and the apex domain since both serve from /).
 export const LINK_MAP = Object.fromEntries(PAGES.map(p => [p.src, p.path]));
+
+// Legacy WordPress URLs (pre go-live site) that Google still has in its index.
+// GitHub Pages can't do server-side redirects, so the build emits a stub
+// <old-path>/index.html with an instant meta refresh per entry — Google treats
+// that as a permanent redirect. Source: Wayback Machine CDX listing of
+// timformatie.nl. Old path -> new canonical path.
+export const REDIRECTS = {
+  '/home/': '/',
+  '/over/': '/over-ons.html',
+  '/contact/': '/contact.html',
+  '/contactmoment-inplannen/': '/contact.html',
+  '/projecten/': '/projecten.html',
+  // diensten/expertise
+  '/expertises/': '/expertise.html',
+  '/diensten/': '/expertise.html',
+  '/diensten-2/': '/expertise.html',
+  '/skills-en-tools/': '/expertise.html',
+  '/trainingen/': '/expertise.html',
+  '/datalab/': '/expertise.html',
+  '/artificial-intelligence/': '/expertise.html',
+  '/data-analyse-met-python/': '/expertise.html',
+  '/powerbi-dashboards/': '/expertise.html',
+  '/looker-studio/': '/expertise.html',
+  '/sql/': '/expertise.html',
+  '/r-stats/': '/expertise.html',
+  '/r-data-analyse/': '/expertise.html',
+  '/process-mining-implementation/': '/expertise.html',
+  '/process-mining-story/': '/expertise.html',
+  '/fhir-data-transformatie/': '/expertise.html',
+  '/gegevensuitwisseling-in-de-zorg/': '/expertise.html',
+  '/data-platform-voor-de-zorg/': '/expertise.html',
+  // R Shiny
+  '/r-shiny/': '/r-shiny.html',
+  '/wat-is-r-shiny/': '/r-shiny.html',
+  '/een-webapplicatie-ontwikkelen-met-r-shiny/': '/r-shiny.html',
+  // beleid
+  '/informatiebeveiliging/': '/informatiebeveiliging.html',
+  '/privacy/': '/privacy.html',
+  '/cookie-policy-eu/': '/cookiebeleid.html',
+  // vacatures
+  '/vacatures/': '/werken-bij.html',
+  '/vacatures/data-analist/': '/werken-bij.html',
+  '/vacatures/vacature-data-engineer/': '/werken-bij.html',
+  '/vacatures/vacature-data-scientist/': '/werken-bij.html',
+  '/vacatures/vacature-junior-data-engineer/': '/werken-bij.html',
+  '/vacature-junior-data-engineer/': '/werken-bij.html',
+  // blog + WordPress-archieven
+  '/blog/': '/',
+  '/blogs/': '/',
+  '/nieuw-teamlid/': '/',
+  '/setup-atlas-on-google-cloud/': '/',
+  '/category/blog/': '/',
+  '/category/nieuws/': '/',
+  '/category/geen-categorie/': '/',
+  '/tag/atlas/': '/',
+  '/tag/bigquery/': '/',
+  '/tag/blog/': '/',
+  '/tag/broadsea/': '/',
+  '/tag/bupar/': '/',
+  '/tag/docker/': '/',
+  '/tag/googlecloud/': '/',
+  '/tag/ohdsi/': '/',
+  '/tag/omop/': '/',
+  '/tag/process-analytics/': '/',
+  '/tag/process-mining/': '/',
+  '/author/carlijnkonings/': '/',
+  '/author/iristimformatie-nl/': '/',
+  '/author/tim-eeftinktimformatie-nl/': '/',
+  '/author/timgrevelink/': '/',
+};
