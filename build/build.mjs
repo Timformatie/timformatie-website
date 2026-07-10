@@ -16,7 +16,7 @@ import http from 'node:http';
 import { readFileSync, writeFileSync, mkdirSync, existsSync, statSync, createReadStream } from 'node:fs';
 import { join, dirname, extname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { SITE, ORG, PAGES, LINK_MAP } from './config.mjs';
+import { SITE, ORG, PAGES, LINK_MAP, REDIRECTS } from './config.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, '..');
@@ -371,6 +371,35 @@ function build404() {
   console.log('✓ 404.html (passthrough: fonts + clean URLs)');
 }
 
+// ---- legacy-URL redirect stubs ----------------------------------------------
+// GitHub Pages has no server-side redirects; an instant meta refresh is treated
+// by Google as a permanent redirect (same pattern as jekyll-redirect-from).
+function buildRedirects() {
+  for (const [from, to] of Object.entries(REDIRECTS)) {
+    const target = SITE.baseUrl + to;
+    const html = `<!doctype html>
+<html lang="${SITE.lang}">
+<head>
+<meta charset="utf-8">
+<title>Doorverwijzen…</title>
+<link rel="canonical" href="${attr(target)}">
+<meta name="robots" content="noindex">
+<meta http-equiv="refresh" content="0; url=${attr(target)}">
+</head>
+<body>
+<script>location.replace(${JSON.stringify(target)});</script>
+<h1>Doorverwijzen…</h1>
+<a href="${attr(target)}">Klik hier als je niet automatisch wordt doorgestuurd.</a>
+</body>
+</html>
+`;
+    const dir = join(OUT, ...from.split('/').filter(Boolean));
+    mkdirSync(dir, { recursive: true });
+    writeFileSync(join(dir, 'index.html'), html);
+  }
+  console.log(`✓ ${Object.keys(REDIRECTS).length} legacy redirect stubs`);
+}
+
 // ---- sitemap + robots ------------------------------------------------------
 function writeRobotsAndSitemap() {
   const robots = SITE.noindex
@@ -427,6 +456,7 @@ async function main() {
   }
 
   build404();
+  buildRedirects();
   writeRobotsAndSitemap();
   console.log(`\nWrote robots.txt + sitemap.xml + llms.txt`);
   console.log(`Done: ${ok}/${PAGES.length} pages.`);
