@@ -370,7 +370,10 @@ ${bodyHtml}
 function build404() {
   let html = readFileSync(join(SRC, '404.html'), 'utf8');
   html = html.replace(/<link[^>]*fonts\.(googleapis|gstatic)\.com[^>]*>\s*/g, '');
-  html = html.replace('</head>', '<meta name="color-scheme" content="light">\n<link rel="stylesheet" href="/assets/fonts/fonts.css">\n</head>');
+  html = html.replace('</head>', '<meta name="color-scheme" content="light">\n<link rel="stylesheet" href="/assets/fonts/fonts.css">\n'
+    // 404 gets no generated <head>, so add the favicons the other pages get
+    + '<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">\n'
+    + '<link rel="icon" type="image/png" sizes="512x512" href="/assets/favicon.png">\n</head>');
   html = rewriteLinks(html);
   writeFileSync(join(OUT, '404.html'), html);
   console.log('✓ 404.html (passthrough: fonts + clean URLs)');
