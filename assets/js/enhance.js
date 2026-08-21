@@ -501,5 +501,108 @@
     });
   }
 
-  onReady(function () { initReveal(); initLang(); initMobileNav(); initParallax(); watchCookieBanner(); initCookiePrefs(); initBioOverlay(); initBooking(); initContactForm(); initHelpdeskForm(); });
+  // --- Flow diagram ----------------------------------------------------------
+  // Reveals the [data-flownode] boxes one after another and runs the connector
+  // fills between them. The hidden start state lives in CSS under html.dc-js,
+  // so with JS off the whole diagram is simply visible.
+  function initFlow() {
+    var flow = doc.querySelector('[data-flow]');
+    if (!flow) return;
+    var nodes = [].slice.call(flow.querySelectorAll('[data-flownode]'));
+    if (!nodes.length) return;
+    var fills = [].slice.call(flow.querySelectorAll('[data-connfill]'));
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var played = false;
+
+    function play(instant) {
+      if (played) return;
+      played = true;
+      nodes.forEach(function (n, i) {
+        function run() { if (instant) n.style.transition = 'none'; n.classList.add('dc-in'); }
+        if (instant) run(); else setTimeout(run, i * 220);
+      });
+      fills.forEach(function (c, i) {
+        function run() { if (instant) c.style.transition = 'none'; c.classList.add('dc-in'); }
+        if (instant) run(); else setTimeout(run, 140 + i * 220);
+      });
+    }
+
+    if (reduce || !('IntersectionObserver' in window)) { play(true); return; }
+    var fo = new IntersectionObserver(function (entries) {
+      if (entries[0].isIntersecting) { play(false); fo.disconnect(); }
+    }, { threshold: 0.35 });
+    fo.observe(flow);
+    // Hard fallback: never let the diagram stay hidden.
+    setTimeout(function () { play(true); fo.disconnect(); }, 3000);
+  }
+
+  // --- Approach timeline + on-page nav ---------------------------------------
+  // Fills [data-tlfill] and colours the numbered step dots ([data-tldot]) as the
+  // timeline scrolls past, highlights the matching [data-toc] link, and keeps the
+  // sticky [data-onpage] bar below the header.
+  function initTimeline() {
+    var onpage = doc.querySelector('[data-onpage]');
+    var tl = doc.querySelector('[data-timeline]');
+    var fill = doc.querySelector('[data-tlfill]');
+    var links = [].slice.call(doc.querySelectorAll('[data-toc]'));
+    var dots = [].slice.call(doc.querySelectorAll('[data-tldot]'));
+    if (!onpage && !tl && !links.length) return;
+    var secs = links.map(function (l) { return doc.getElementById(l.getAttribute('data-toc')); });
+    var hdr = doc.querySelector('header');
+
+    function syncTop() {
+      if (onpage && hdr) onpage.style.top = Math.round(hdr.getBoundingClientRect().height) + 'px';
+    }
+    syncTop();
+    window.addEventListener('resize', syncTop);
+
+    function paintDots(p) {
+      dots.forEach(function (d, i) {
+        var on = p > (i / dots.length) * 0.95;
+        d.style.background = on ? '#5F8368' : '#F5F1E8';
+        d.style.borderColor = on ? '#5F8368' : 'rgba(15,42,61,0.12)';
+        d.style.color = on ? '#F5F1E8' : 'rgba(15,42,61,0.5)';
+      });
+    }
+
+    // Reduced motion: show the completed state instead of tying it to scrolling.
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) {
+      if (tl && fill) {
+        fill.style.height = Math.max(0, tl.getBoundingClientRect().height - 44) + 'px';
+        paintDots(1);
+      }
+      return;
+    }
+
+    var ticking = false;
+    function onScroll() {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(function () {
+        ticking = false;
+        if (links.length) {
+          var active = -1;
+          secs.forEach(function (sec, i) {
+            if (sec && sec.getBoundingClientRect().top <= 170) active = i;
+          });
+          links.forEach(function (l, i) {
+            var on = i === active;
+            l.style.color = on ? '#0F2A3D' : 'rgba(15,42,61,0.55)';
+            l.style.borderBottomColor = on ? '#5F8368' : 'transparent';
+          });
+        }
+        if (tl && fill) {
+          var r = tl.getBoundingClientRect();
+          var p = Math.min(1, Math.max(0, (window.innerHeight * 0.62 - r.top) / Math.max(1, r.height - 40)));
+          fill.style.height = (p * (r.height - 44)) + 'px';
+          paintDots(p);
+        }
+      });
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+
+  onReady(function () { initReveal(); initLang(); initMobileNav(); initParallax(); watchCookieBanner(); initCookiePrefs(); initBioOverlay(); initBooking(); initContactForm(); initHelpdeskForm(); initFlow(); initTimeline(); });
 })();
