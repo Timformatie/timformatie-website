@@ -39,6 +39,7 @@ export const ORG = {
 export const PAGES = [
   { src: 'Home.dc.html',                out: 'index.html',                 path: '/',                            label: 'Home' },
   { src: 'Expertise.dc.html',           out: 'expertise.html',             path: '/expertise.html',              label: 'Expertise' },
+  { src: 'Dataplatform.dc.html',         out: 'dataplatform.html',          path: '/dataplatform.html',           label: 'Dataplatform' },
   { src: 'Projecten.dc.html',           out: 'projecten.html',             path: '/projecten.html',              label: 'Projecten' },
   { src: 'OverOns.dc.html',             out: 'over-ons.html',              path: '/over-ons.html',               label: 'Over ons' },
   { src: 'Contact.dc.html',             out: 'contact.html',               path: '/contact.html',                label: 'Contact' },

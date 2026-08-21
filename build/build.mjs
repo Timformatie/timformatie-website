@@ -326,6 +326,11 @@ function transform({ source, rendered, page }) {
     hoverCss ? `<style>${hoverCss}</style>` : '',
     // reveal gating + visible focus + mobile navigation
     `<style>html.dc-js [data-reveal]{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}html.dc-js [data-reveal].dc-in{opacity:1;transform:none}a:focus-visible,button:focus-visible{outline:2px solid #5F8368;outline-offset:2px}` +
+      // flow diagram: staggered reveal, gated on JS so the diagram is fully
+      // visible when JS is off (same contract as [data-reveal])
+      `html.dc-js [data-flownode]{opacity:0;transform:translateY(14px);transition:opacity .6s cubic-bezier(.4,0,.2,1),transform .6s cubic-bezier(.4,0,.2,1)}` +
+      `html.dc-js [data-flownode].dc-in{opacity:1;transform:none}` +
+      `[data-connfill]{right:0}html.dc-js [data-connfill]{right:100%}html.dc-js [data-connfill].dc-in{right:0}` +
       `.dc-navtoggle{display:none;flex-direction:column;justify-content:center;gap:5px;width:46px;height:42px;padding:0 11px;border:1px solid rgba(15,42,61,0.18);border-radius:11px;background:#FBF9F2;cursor:pointer}` +
       `.dc-navtoggle span{display:block;height:2px;width:100%;background:#0F2A3D;border-radius:2px;transition:transform .22s ease,opacity .22s ease}` +
       `.dc-navtoggle[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}` +

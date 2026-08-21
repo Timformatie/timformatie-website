@@ -9,6 +9,7 @@ Ons open source dataplatform heet SRDP (https://srdphub.com/).
 ## Pagina's
 - [Home](https://timformatie.nl/)
 - [Expertise](https://timformatie.nl/expertise.html)
+- [Dataplatform](https://timformatie.nl/dataplatform.html)
 - [Projecten](https://timformatie.nl/projecten.html)
 - [Over ons](https://timformatie.nl/over-ons.html)
 - [Contact](https://timformatie.nl/contact.html)
