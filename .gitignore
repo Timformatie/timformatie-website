@@ -8,3 +8,9 @@ build/node_modules/
 .env
 .env.*
 !.env.example
+
+# Interne werkdocumenten — alles in de repo-map wordt door GitHub Pages
+# meegepubliceerd, dus briefings en concepten mogen er nooit in.
+pagina-brief.md
+*-brief.md
+werkdocumenten/
