@@ -37,6 +37,9 @@
   html{scroll-behavior:smooth}
   details summary::-webkit-details-marker{display:none}
   @media(prefers-reduced-motion:reduce){[data-track]{animation:none !important}}
+  @media(max-width:960px){
+    [data-swipehint-breed]{display:block !important}
+  }
   @media(max-width:740px){
     [data-swipehint]{display:block !important}
   }
@@ -109,6 +112,7 @@
     <a href="#aanbod" data-toc="aanbod" style="flex:none;padding:14px 14px;font-size:14.5px;font-weight:600;color:rgba(15,42,61,0.55);text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap;" data-en="The European field" class="dh0">Het Europese aanbod</a>
     <a href="#zorg" data-toc="zorg" style="flex:none;padding:14px 14px;font-size:14.5px;font-weight:600;color:rgba(15,42,61,0.55);text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap;" data-en="What healthcare must arrange" class="dh0">Wat de zorg moet regelen</a>
     <a href="#vragen" data-toc="vragen" style="flex:none;padding:14px 14px;font-size:14.5px;font-weight:600;color:rgba(15,42,61,0.55);text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap;" data-en="Five questions" class="dh0">Vijf vragen</a>
+    <a href="#tools" data-toc="tools" style="flex:none;padding:14px 14px;font-size:14.5px;font-weight:600;color:rgba(15,42,61,0.55);text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap;" data-en="The tooling layer" class="dh0">De toolslaag</a>
   </div>
 </div>
 
@@ -139,7 +143,7 @@
     <p data-reveal="" style="font-size:17.5px;line-height:1.65;color:rgba(15,42,61,0.72);max-width:760px;margin:0 0 44px;text-wrap:pretty;" data-en="Roughly speaking the market falls into three groups. They differ less in what they can do technically than in the legal position you end up in.">Grofweg valt de markt in drie groepen uiteen. Ze verschillen minder in wat ze technisch kunnen dan in de juridische positie waarin je terechtkomt.</p>
       <div data-swipehint="" style="display:none;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.08em;color:rgba(15,42,61,0.5);margin:0 0 10px;" data-en="Swipe to see the whole diagram →">Veeg om het hele diagram te zien →</div>
       <div style="overflow-x:auto;margin:0 0 44px;">
-        <svg viewBox="0 0 760 270" role="img" aria-label="Soevereiniteitsmeter: Amerikaanse hyperscalers geven laag zeggenschap over je data, de Europese sovereign-varianten van dezelfde partijen midden, en Europese aanbieders hoog." style="display:block;min-width:660px;width:100%;height:auto;">
+        <svg viewBox="0 0 760 270" role="img" aria-label="Soevereiniteitsmeter: Amerikaanse hyperscalers geven laag zeggenschap over je data, de Europese soevereine varianten van dezelfde partijen midden, en Europese aanbieders hoog." style="display:block;min-width:660px;width:100%;height:auto;">
           <title>Drie soorten cloud, gerangschikt naar zeggenschap over je data</title>
           <rect x="95" y="165" width="140" height="40" rx="6" fill="#C9D8CC"></rect>
           <rect x="310" y="128" width="140" height="77" rx="6" fill="#5F8368"></rect>
@@ -150,7 +154,7 @@
           <line x1="60" y1="205.5" x2="700" y2="205.5" stroke="#0F2A3D" stroke-opacity="0.25" stroke-width="1.5"></line>
           <text x="165" y="231" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="16" font-weight="600" fill="#0F2A3D">Amerikaanse</text>
           <text x="165" y="251" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="16" font-weight="600" fill="#0F2A3D">hyperscalers</text>
-          <text x="380" y="231" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="16" font-weight="600" fill="#0F2A3D">Sovereign cloud</text>
+          <text x="380" y="231" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="16" font-weight="600" fill="#0F2A3D">Soevereine cloud</text>
           <text x="380" y="251" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#0F2A3D" fill-opacity="0.6">van dezelfde partijen</text>
           <text x="595" y="231" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="16" font-weight="600" fill="#0F2A3D">Europese</text>
           <text x="595" y="251" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="16" font-weight="600" fill="#0F2A3D">aanbieders</text>
@@ -166,7 +170,7 @@
         </div>
         <div style="background:#FBF9F2;border:1px solid rgba(95,131,104,0.3);border-radius:18px;padding:28px 26px;">
           <div style="font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:0.14em;text-transform:uppercase;color:#5F8368;font-weight:700;margin-bottom:12px;">02 · Zeggenschap midden</div>
-          <h3 style="font-family:'Archivo',sans-serif;font-weight:700;font-size:20px;line-height:1.25;color:#0F2A3D;margin:0 0 8px;" data-en="Sovereign cloud from the same providers">Sovereign cloud van dezelfde partijen</h3>
+          <h3 style="font-family:'Archivo',sans-serif;font-weight:700;font-size:20px;line-height:1.25;color:#0F2A3D;margin:0 0 8px;" data-en="Sovereign cloud from the same providers">Soevereine cloud van dezelfde partijen</h3>
           <div style="font-family:'JetBrains Mono',monospace;font-size:12.5px;line-height:1.5;color:rgba(15,42,61,0.55);margin-bottom:14px;" data-en="AWS European Sovereign Cloud · Microsoft · Google · Oracle">AWS European Sovereign Cloud · Microsoft · Google · Oracle</div>
           <p style="font-size:15.5px;line-height:1.6;color:rgba(15,42,61,0.72);margin:0;text-wrap:pretty;" data-en="Separate European legal entities, European staff and solid technical safeguards. AWS opened this variant in January 2026 in Brandenburg as an independent German company, with expansion to the Netherlands announced. Lawyers disagree on whether that removes the CLOUD Act risk entirely, since the parent company remains American.">Aparte Europese rechtspersonen, Europees personeel en stevige technische waarborgen. AWS opende deze variant in januari 2026 in Brandenburg als zelfstandige Duitse onderneming; uitbreiding naar Nederland is aangekondigd. Juristen zijn verdeeld of het CLOUD Act-risico daarmee helemaal verdwijnt, omdat het moederbedrijf Amerikaans blijft.</p>
         </div>
@@ -174,7 +178,7 @@
           <div style="font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:0.14em;text-transform:uppercase;color:#5F8368;font-weight:700;margin-bottom:12px;">03 · Zeggenschap hoog</div>
           <h3 style="font-family:'Archivo',sans-serif;font-weight:700;font-size:20px;line-height:1.25;color:#0F2A3D;margin:0 0 8px;" data-en="European providers">Europese aanbieders</h3>
           <div style="font-family:'JetBrains Mono',monospace;font-size:12.5px;line-height:1.5;color:rgba(15,42,61,0.55);margin-bottom:14px;" data-en="European ownership · European law">Europees eigendom · Europees recht</div>
-          <p style="font-size:15.5px;line-height:1.6;color:rgba(15,42,61,0.72);margin:0;text-wrap:pretty;" data-en="No American exposure. The range of ready-made services is usually narrower, so you build more yourself or with open source.">Geen Amerikaanse blootstelling. Het aanbod aan kant-en-klare diensten is doorgaans smaller, dus bouw je meer zelf of met open source.</p>
+          <p style="font-size:15.5px;line-height:1.6;color:rgba(15,42,61,0.72);margin:0;text-wrap:pretty;" data-en="No American exposure. The idea that these providers lag far behind is out of date: the range is growing quickly and providers like Scaleway and StackIT now offer managed databases, queues and Kubernetes. Their catalogue of ready-made services is still narrower, so you build more yourself or with open source.">Geen Amerikaanse blootstelling. Het beeld dat deze partijen ver achterlopen is achterhaald: het aanbod groeit snel en partijen als Scaleway en StackIT leveren inmiddels beheerde databases, wachtrijen en Kubernetes. Het pakket kant-en-klare diensten is nog wel smaller, dus bouw je vaker zelf of met open source.</p>
         </div>
       </div>
     </div>
@@ -261,8 +265,8 @@
     <p data-reveal="" style="font-size:17.5px;line-height:1.65;color:rgba(245,241,232,0.8);max-width:760px;margin:0 0 44px;text-wrap:pretty;" data-en="A cloud choice in healthcare is not only a technical one. Four rules determine what is possible at all.">Een cloudkeuze in de zorg is niet alleen technisch. Vier regels bepalen wat er úberhaupt kan.</p>
     <div data-cols="" style="display:grid;grid-template-columns:repeat(2,1fr);gap:38px 44px;max-width:1120px;">
         <div>
-          <h3 style="font-family:'Archivo',sans-serif;font-weight:700;font-size:19px;line-height:1.3;color:#F5F1E8;margin:0 0 10px;" data-en="Most providers do not hold NEN 7510">NEN 7510 hebben ze meestal niet</h3>
-          <p style="font-size:16px;line-height:1.6;color:rgba(245,241,232,0.78);margin:0;text-wrap:pretty;" data-en="Since 2018, care providers must comply with NEN 7510 when they use a healthcare information system or exchange system. But it is a Dutch standard, so international providers usually do not hold it. That makes the question not whether your supplier has it, but how you organise it yourself. Worth knowing: NEN 7510, 7512 and 7513 are available free of charge, through an agreement between the Dutch health ministry and NEN.">Zorgaanbieders zijn sinds 2018 verplicht aan NEN 7510 te voldoen als ze een zorginformatiesysteem of uitwisselingssysteem gebruiken. Het is echter een Nederlandse norm, dus internationale aanbieders hebben hem doorgaans niet. Dat maakt de vraag niet of je leverancier hem heeft, maar hoe je het zelf inricht. Handig om te weten: NEN 7510, 7512 en 7513 zijn gratis op te vragen, via een afspraak tussen VWS en NEN.</p>
+          <h3 style="font-family:'Archivo',sans-serif;font-weight:700;font-size:19px;line-height:1.3;color:#F5F1E8;margin:0 0 10px;" data-en="NEN 7510 is ISO 27001, tailored to healthcare">NEN 7510 is ISO 27001, toegespitst op de zorg</h3>
+          <p style="font-size:16px;line-height:1.6;color:rgba(245,241,232,0.78);margin:0;text-wrap:pretty;" data-en="NEN 7510 is a Dutch elaboration of ISO 27001, with requirements tailored specifically to healthcare. International providers usually do not hold that elaboration, but almost always hold ISO 27001. The gap is therefore smaller than it looks: the base is there, and you arrange the healthcare-specific layer yourself or with a party that does hold NEN 7510. Care providers have been required to do so since 2018 when using a healthcare information system. Worth knowing: NEN 7510, 7512 and 7513 are available free of charge, through an agreement between the Dutch health ministry and NEN.">NEN 7510 is een Nederlandse uitwerking van ISO 27001, met eisen die specifiek op de zorg zijn toegespitst. Internationale aanbieders hebben die uitwerking doorgaans niet, maar ISO 27001 vrijwel altijd wel. Het gat is dus kleiner dan het lijkt: de basis staat er, de zorgspecifieke aanvulling regel je zelf of met een partij die NEN 7510 heeft. Zorgaanbieders zijn daar sinds 2018 toe verplicht bij gebruik van een zorginformatiesysteem. Handig om te weten: NEN 7510, 7512 en 7513 zijn gratis op te vragen, via een afspraak tussen VWS en NEN.</p>
         </div>
         <div>
           <h3 style="font-family:'Archivo',sans-serif;font-weight:700;font-size:19px;line-height:1.3;color:#F5F1E8;margin:0 0 10px;" data-en="The Dutch Cybersecurity Act has applied since 15 August 2026">De Cyberbeveiligingswet geldt sinds 15 augustus 2026</h3>
@@ -288,38 +292,41 @@
     <div data-reveal="" style="font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:0.16em;text-transform:uppercase;color:#5F8368;font-weight:700;margin-bottom:20px;" data-en="Where to look, and what to ask">Welke kant op en wat te vragen</div>
     <h2 data-reveal="" style="font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(30px,3.6vw,46px);line-height:1.08;letter-spacing:-0.015em;color:#0F2A3D;margin:0 0 22px;max-width:900px;" data-en="Which way can you look?">Welke kant kun je op kijken?</h2>
     <p data-reveal="" style="font-size:17.5px;line-height:1.65;color:rgba(15,42,61,0.72);max-width:760px;margin:0 0 44px;text-wrap:pretty;" data-en="One question decides most of it: does the data trace back to an individual patient? From there, three routes remain.">Één vraag bepaalt het grootste deel: is de data te herleiden tot een individuele patiënt? Vanaf daar blijven er drie routes over.</p>
-      <div data-swipehint="" style="display:none;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.08em;color:rgba(15,42,61,0.5);margin:0 0 10px;" data-en="Swipe to see the whole diagram →">Veeg om het hele schema te zien →</div>
-      <div style="overflow-x:auto;margin:0 0 52px;">
-        <svg viewBox="0 0 660 386" role="img" aria-label="Beslisschema. Gaat het om herleidbare patiëntdata? Nee: meer speelruimte, kies op functie en kosten. Ja: weegt zeggenschap zwaarst, kijk naar een Europese aanbieder met open source; is een breed dienstenaanbod nodig, kijk naar de sovereign cloud van een hyperscaler; is er weinig eigen beheercapaciteit, kijk naar een Nederlandse managed partij." style="display:block;min-width:620px;width:100%;height:auto;">
+      <div data-swipehint-breed="" style="display:none;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.08em;color:rgba(15,42,61,0.5);margin:0 0 10px;" data-en="Swipe to see the whole diagram →">Veeg om het hele schema te zien →</div>
+      <div style="overflow-x:auto;margin:0 0 18px;">
+        <svg viewBox="0 0 940 300" role="img" aria-label="Beslisschema. Gaat het om herleidbare patiëntendata of andere persoonsgegevens? Nee: meer speelruimte, kies op functie en kosten. Ja: als zeggenschap het zwaarst weegt, kijk naar een Europese aanbieder met open source; is een breed dienstenaanbod nodig, kijk naar de soevereine cloud van een hyperscaler. In beide gevallen geldt: is er weinig eigen beheercapaciteit, kijk dan naar een managed service provider." style="display:block;min-width:860px;width:100%;height:auto;">
           <title>Welke kant kun je op kijken?</title>
           <g fill="none" stroke="#5F8368" stroke-width="1.6" stroke-opacity="0.75">
-            <path d="M184 176 H225 V57 H290"></path>
-            <path d="M184 206 H250"></path>
-            <path d="M250 157 V327"></path>
-            <path d="M250 157 H290"></path>
-            <path d="M250 242 H290"></path>
-            <path d="M250 327 H290"></path>
+            <path d="M220 175 H253 V59 H286"></path>
+            <path d="M220 220 H253"></path>
+            <path d="M253 159 V251"></path>
+            <path d="M253 159 H286"></path>
+            <path d="M253 251 H286"></path>
+            <path d="M616 159 H648 V214 H680"></path>
+            <path d="M616 251 H648 V214 H680"></path>
           </g>
-          <rect x="8" y="149" width="176" height="84" rx="12" fill="#0F2A3D"></rect>
-          <text x="96" y="180" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="15.5" font-weight="600" fill="#F5F1E8">Gaat het om</text>
-          <text x="96" y="200" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="15.5" font-weight="600" fill="#F5F1E8">herleidbare</text>
-          <text x="96" y="220" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="15.5" font-weight="600" fill="#F5F1E8">patiëntdata?</text>
-          <text x="233" y="120" font-family="'JetBrains Mono',monospace" font-size="12" font-weight="600" letter-spacing="1" fill="#5F8368">NEE</text>
-          <text x="258" y="200" font-family="'JetBrains Mono',monospace" font-size="12" font-weight="600" letter-spacing="1" fill="#5F8368">JA</text>
-          <rect x="290" y="28" width="362" height="58" rx="11" fill="#FBF9F2" stroke="#C9D8CC" stroke-width="1.4"></rect>
-          <text x="308" y="52" font-family="'Source Sans 3',sans-serif" font-size="15" font-weight="700" fill="#0F2A3D">Meer speelruimte.</text>
-          <text x="308" y="72" font-family="'Source Sans 3',sans-serif" font-size="15" fill="#0F2A3D" fill-opacity="0.7">Kies op functie en kosten.</text>
-          <rect x="290" y="128" width="362" height="58" rx="11" fill="#FBF9F2" stroke="#C9D8CC" stroke-width="1.4"></rect>
-          <text x="308" y="152" font-family="'Source Sans 3',sans-serif" font-size="15" font-weight="700" fill="#0F2A3D">Zeggenschap weegt zwaarst</text>
-          <text x="308" y="172" font-family="'Source Sans 3',sans-serif" font-size="15" fill="#5F8368">→ Europese aanbieder, met open source</text>
-          <rect x="290" y="213" width="362" height="58" rx="11" fill="#FBF9F2" stroke="#C9D8CC" stroke-width="1.4"></rect>
-          <text x="308" y="237" font-family="'Source Sans 3',sans-serif" font-size="15" font-weight="700" fill="#0F2A3D">Breed dienstenaanbod nodig</text>
-          <text x="308" y="257" font-family="'Source Sans 3',sans-serif" font-size="15" fill="#5F8368">→ sovereign cloud van een hyperscaler</text>
-          <rect x="290" y="298" width="362" height="58" rx="11" fill="#FBF9F2" stroke="#C9D8CC" stroke-width="1.4"></rect>
-          <text x="308" y="322" font-family="'Source Sans 3',sans-serif" font-size="15" font-weight="700" fill="#0F2A3D">Weinig eigen beheercapaciteit</text>
-          <text x="308" y="342" font-family="'Source Sans 3',sans-serif" font-size="15" fill="#5F8368">→ Nederlandse managed partij</text>
+          <rect x="8" y="145" width="212" height="104" rx="12" fill="#0F2A3D"></rect>
+          <text x="114" y="178" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14.5" font-weight="600" fill="#F5F1E8">Gaat het om herleidbare</text>
+          <text x="114" y="198" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14.5" font-weight="600" fill="#F5F1E8">patiëntendata of andere</text>
+          <text x="114" y="218" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14.5" font-weight="600" fill="#F5F1E8">persoonsgegevens?</text>
+          <text x="260" y="112" font-family="'JetBrains Mono',monospace" font-size="12" font-weight="600" letter-spacing="1" fill="#5F8368">NEE</text>
+          <text x="260" y="196" font-family="'JetBrains Mono',monospace" font-size="12" font-weight="600" letter-spacing="1" fill="#5F8368">JA</text>
+          <rect x="286" y="30" width="330" height="58" rx="11" fill="#FBF9F2" stroke="#C9D8CC" stroke-width="1.4"></rect>
+          <text x="304" y="54" font-family="'Source Sans 3',sans-serif" font-size="15" font-weight="700" fill="#0F2A3D">Meer speelruimte.</text>
+          <text x="304" y="74" font-family="'Source Sans 3',sans-serif" font-size="15" fill="#0F2A3D" fill-opacity="0.7">Kies op functie en kosten.</text>
+          <rect x="286" y="130" width="330" height="58" rx="11" fill="#FBF9F2" stroke="#C9D8CC" stroke-width="1.4"></rect>
+          <text x="304" y="154" font-family="'Source Sans 3',sans-serif" font-size="15" font-weight="700" fill="#0F2A3D">Zeggenschap weegt het zwaarst</text>
+          <text x="304" y="174" font-family="'Source Sans 3',sans-serif" font-size="15" fill="#5F8368">→ Europese aanbieder, met open source</text>
+          <rect x="286" y="222" width="330" height="58" rx="11" fill="#FBF9F2" stroke="#C9D8CC" stroke-width="1.4"></rect>
+          <text x="304" y="246" font-family="'Source Sans 3',sans-serif" font-size="15" font-weight="700" fill="#0F2A3D">Breed dienstenaanbod nodig</text>
+          <text x="304" y="266" font-family="'Source Sans 3',sans-serif" font-size="15" fill="#5F8368">→ soevereine cloud van een hyperscaler</text>
+          <rect x="680" y="169" width="248" height="90" rx="11" fill="#FBF9F2" stroke="#C9D8CC" stroke-width="1.4"></rect>
+          <text x="698" y="193" font-family="'Source Sans 3',sans-serif" font-size="15" font-weight="700" fill="#0F2A3D">Weinig eigen</text>
+          <text x="698" y="213" font-family="'Source Sans 3',sans-serif" font-size="15" font-weight="700" fill="#0F2A3D">beheercapaciteit?</text>
+          <text x="698" y="240" font-family="'Source Sans 3',sans-serif" font-size="15" fill="#5F8368">→ Managed Service Provider</text>
         </svg>
       </div>
+      <p data-reveal="" style="font-size:16px;line-height:1.6;color:rgba(15,42,61,0.68);max-width:700px;margin:0 0 52px;text-wrap:pretty;" data-en-html="And yes, that last one is us too. But you keep the ownership, so you can always switch to another manager, or take it in-house.">En ja, dat laatste doen wij ook. Je houdt het eigenaarschap alleen zelf, dus je kunt altijd van beheerder wisselen of het in eigen hand nemen.</p>
     <div style="max-width:780px;">
       <h3 data-reveal="" style="font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(22px,2.3vw,29px);line-height:1.15;color:#0F2A3D;margin:0 0 12px;" data-en="Five questions for your supplier">Vijf vragen voor je leverancier</h3>
       <p style="font-size:16.5px;line-height:1.6;color:rgba(15,42,61,0.68);margin:0 0 12px;text-wrap:pretty;" data-en="Whichever route you take, these five are worth putting on the table. Take them to your next conversation with a provider.">Welke route je ook kiest, deze vijf zijn het waard om op tafel te leggen. Neem ze mee naar je volgende gesprek met een aanbieder.</p>
@@ -333,8 +340,8 @@
       <div style="display:flex;gap:20px;padding:22px 0;border-top:1px solid rgba(15,42,61,0.1);">
         <div style="flex:none;font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;color:#5F8368;padding-top:4px;width:26px;">02</div>
         <div>
-          <p style="font-family:'Archivo',sans-serif;font-weight:700;font-size:18.5px;line-height:1.35;color:#0F2A3D;margin:0 0 7px;text-wrap:pretty;" data-en="“Do you hold NEN 7510?”">“Hebben jullie NEN 7510?”</p>
-          <p style="font-size:15.5px;line-height:1.6;color:rgba(15,42,61,0.68);margin:0;text-wrap:pretty;" data-en="If not, the follow-up is how the two of you will meet that standard together.">Zo niet, dan is de vervolgvraag hoe jullie samen aan die norm gaan voldoen.</p>
+          <p style="font-family:'Archivo',sans-serif;font-weight:700;font-size:18.5px;line-height:1.35;color:#0F2A3D;margin:0 0 7px;text-wrap:pretty;" data-en="“If we want different tools in a few years, can we take our platform with us?”">“Als we over een paar jaar andere tools willen, kunnen we ons platform dan meenemen?”</p>
+          <p style="font-size:15.5px;line-height:1.6;color:rgba(15,42,61,0.68);margin:0;text-wrap:pretty;" data-en="Your tooling, not your data, is often the real dependency. If your platform runs on open standards, you can swap out a tool without rebuilding everything.">Niet je data maar je gereedschap is vaak de echte afhankelijkheid. Draait je platform op open standaarden, dan wissel je een tool uit zonder alles opnieuw te bouwen.</p>
         </div>
       </div>
       <div style="display:flex;gap:20px;padding:22px 0;border-top:1px solid rgba(15,42,61,0.1);">
@@ -357,6 +364,23 @@
           <p style="font-family:'Archivo',sans-serif;font-weight:700;font-size:18.5px;line-height:1.35;color:#0F2A3D;margin:0 0 7px;text-wrap:pretty;" data-en="“Where are your data centres, and what happens if you go under?”">“Waar staan jullie datacenters en wat gebeurt er als jullie omvallen?”</p>
           <p style="font-size:15.5px;line-height:1.6;color:rgba(15,42,61,0.68);margin:0;text-wrap:pretty;" data-en="European providers sometimes have data centres outside the EU too. And continuity is not a side issue in healthcare.">Ook Europese aanbieders hebben soms datacenters buiten de EU. Continuïteit is in de zorg bovendien geen bijzaak.</p>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="tools" data-screen-label="De toolslaag" data-sec="" style="padding:88px 40px;background:#5F8368;color:#F5F1E8;">
+  <div style="max-width:1280px;margin:0 auto;">
+    <div data-reveal="" style="font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:0.16em;text-transform:uppercase;color:rgba(245,241,232,0.75);font-weight:700;margin-bottom:20px;" data-en="One layer up">Nog een laag</div>
+    <h2 data-reveal="" style="font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(30px,3.6vw,46px);line-height:1.08;letter-spacing:-0.015em;margin:0 0 26px;max-width:900px;" data-en="A European cloud is half the story">Een Europese cloud is de helft van het verhaal</h2>
+    <div data-split="" style="display:grid;grid-template-columns:1fr 1fr;gap:44px;max-width:1120px;">
+      <div>
+        <p style="font-size:17px;line-height:1.65;color:rgba(245,241,232,0.9);margin:0 0 18px;text-wrap:pretty;" data-en="Where your platform runs is one question. What you build it with is the next. You can put your data neatly in a European data centre and then run Databricks or Snowflake on top of it.">Waar je platform draait is één vraag. Waarmee je het bouwt is de volgende. Je kunt je data netjes in een Europees datacenter zetten en er vervolgens Databricks of Snowflake bovenop zetten.</p>
+        <p style="font-size:17px;line-height:1.65;color:rgba(245,241,232,0.9);margin:0;text-wrap:pretty;" data-en="In that case your processing, your data model and part of your knowledge still sit with an American supplier. The dependency has not gone away; it has moved from the infrastructure to the tooling.">In dat geval liggen je verwerking, je datamodel en een deel van je kennis alsnog bij een Amerikaanse leverancier. De afhankelijkheid is niet weg, maar verschoven van de infrastructuur naar het gereedschap.</p>
+      </div>
+      <div>
+        <p style="font-size:17px;line-height:1.65;color:rgba(245,241,232,0.9);margin:0 0 18px;text-wrap:pretty;" data-en="When we look at a platform we therefore look at both layers. Open standards and open formats mean you can replace a tool without losing your platform.">Bij een platform kijken we daarom naar beide lagen. Open standaarden en open formaten zorgen ervoor dat je een tool kunt vervangen zonder je platform kwijt te raken.</p>
+        <p style="font-size:17px;line-height:1.65;color:rgba(245,241,232,0.9);margin:0;text-wrap:pretty;" data-en="Which European and open alternatives exist for that tooling layer is a subject of its own. We will write more about that soon.">Welke Europese en open alternatieven er voor die gereedschapslaag bestaan, is een onderwerp apart. We schrijven daar binnenkort meer over.</p>
       </div>
     </div>
   </div>
